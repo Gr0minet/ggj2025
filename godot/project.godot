@@ -65,3 +65,6 @@ move_down={
 
 3d_physics/layer_1="bubble"
 3d_physics/layer_2="world"
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/snap_to_grid_button/plugin.cfg")

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://4el3kq51boe8"]
+
+[ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
+[ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://environment/water/textures/caustic_texture.png" id="2_woun1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_imin5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xrw8s"]
+seamless = true
+noise = SubResource("FastNoiseLite_imin5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nyuec"]
+render_priority = 0
+shader = ExtResource("1_gudu6")
+shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
+shader_parameter/water_depth_color = Color(0.133333, 0.490196, 0.823529, 1)
+shader_parameter/water_edge_distance = 0.2
+shader_parameter/water_depth_distance = 8.0
+shader_parameter/water_texture_scale = 4.0
+shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_xrw8s")
+shader_parameter/caustic_sampler = ExtResource("2_woun1")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h4pj0"]
+material = SubResource("ShaderMaterial_nyuec")
+size = Vector2(2, 4)
+
+[node name="Main" type="Node3D"]
+
+[node name="Baignoire" type="CSGBox3D" parent="."]
+size = Vector3(2, 1, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Baignoire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+operation = 2
+size = Vector3(1.9, 0.9, 3.9)
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("PlaneMesh_h4pj0")

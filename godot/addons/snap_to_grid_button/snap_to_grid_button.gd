@@ -6,7 +6,7 @@ const TRANSLATE_SNAP: Array[float] = [0.05, 0.1, 0.2, 0.5, 1.0, 2.0, 4.0]
 const ROTATION_SNAP: Array[float] = [5, 10, 15, 30, 45, 90]
 const SCALE_SNAP: Array[float] = [10, 50, 100]
 
-const ACTION_KEY_DICT: Dictionary[StringName, Key] = {
+const ACTION_KEY_DICT: Dictionary = {
 	&"decrease_translate_snap": KEY_1,
 	&"increase_translate_snap": KEY_2,
 	&"decrease_rotation_snap": KEY_3,

@@ -1,7 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=13 format=3 uid="uid://4el3kq51boe8"]
 
+[ext_resource type="Script" path="res://main/main.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
 [ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://environment/water/textures/caustic_texture.png" id="2_woun1"]
+[ext_resource type="PackedScene" uid="uid://c056xh7ua8mra" path="res://item/cube_flottant.tscn" id="3_xvxn0"]
+[ext_resource type="Script" path="res://main/hud.gd" id="4_f7kia"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ajdol"]
+sky_material = SubResource("ProceduralSkyMaterial_rsayj")
+
+[sub_resource type="Environment" id="Environment_7x14t"]
+background_mode = 2
+sky = SubResource("Sky_ajdol")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_imin5"]
 
@@ -14,7 +30,7 @@ render_priority = 0
 shader = ExtResource("1_gudu6")
 shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
 shader_parameter/water_depth_color = Color(0.133333, 0.490196, 0.823529, 1)
-shader_parameter/water_edge_distance = 0.2
+shader_parameter/water_edge_distance = 0.1
 shader_parameter/water_depth_distance = 8.0
 shader_parameter/water_texture_scale = 4.0
 shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_xrw8s")
@@ -25,6 +41,14 @@ material = SubResource("ShaderMaterial_nyuec")
 size = Vector2(2, 4)
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_bujv1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7x14t")
 
 [node name="Baignoire" type="CSGBox3D" parent="."]
 size = Vector3(2, 1, 4)
@@ -35,5 +59,43 @@ operation = 2
 size = Vector3(1.9, 0.9, 3.9)
 
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 mesh = SubResource("PlaneMesh_h4pj0")
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="Item" parent="Items" instance=ExtResource("3_xvxn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.11749e-08, -0.939693, 0.34202, -6.72004e-08, 0.34202, 0.939693, -1, -3.34849e-08, -5.93256e-08, 0.9, 1.9, 4.47035e-08)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_f7kia")
+
+[node name="CountdownLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -44.0
+offset_right = 0.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+
+[node name="Countdown" type="Timer" parent="HUD"]
+
+[connection signal="timeout" from="HUD/Countdown" to="HUD" method="_on_countdown_timeout"]

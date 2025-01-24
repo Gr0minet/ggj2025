@@ -14,6 +14,10 @@ config/name="GGJ2025"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/snap_to_grid_button/plugin.cfg")
+
 [input]
 
 ui_accept={
@@ -65,6 +69,3 @@ move_down={
 
 3d_physics/layer_1="bubble"
 3d_physics/layer_2="world"
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/snap_to_grid_button/plugin.cfg")

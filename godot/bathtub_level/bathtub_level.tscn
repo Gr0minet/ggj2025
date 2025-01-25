@@ -1,18 +1,18 @@
 [gd_scene load_steps=24 format=3 uid="uid://4el3kq51boe8"]
 
-[ext_resource type="Script" path="res://main/main.gd" id="1_bujv1"]
+[ext_resource type="Script" path="res://bathtub_level/bathtub_level.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
 [ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://environment/water/textures/caustic_texture.png" id="2_woun1"]
 [ext_resource type="PackedScene" uid="uid://b5h2nmyraqa6q" path="res://environment/baignoire/BAIGNOIRE_SMOOTH.glb" id="3_4tryq"]
 [ext_resource type="PackedScene" uid="uid://cpsw08ate1kf0" path="res://assets/FLOTTE.glb" id="3_qnajh"]
 [ext_resource type="PackedScene" uid="uid://byejtqwx88kyu" path="res://scenes/bubble.tscn" id="4_1iwhq"]
-[ext_resource type="Script" path="res://main/hud.gd" id="4_f7kia"]
+[ext_resource type="Script" path="res://bathtub_level/hud.gd" id="4_f7kia"]
 [ext_resource type="Texture2D" uid="uid://d2mghrpwtd852" path="res://environment/sol/floor_Tiles029_4K_Color.jpg" id="4_vyspa"]
 [ext_resource type="PackedScene" uid="uid://b2i5bmbjailsa" path="res://item/duck.tscn" id="7_t2yrm"]
 [ext_resource type="PackedScene" uid="uid://de76wbnhfpsty" path="res://item/tooth_brush.tscn" id="8_vqbr5"]
 [ext_resource type="Script" path="res://scripts/debug_draw.gd" id="8_wqv0v"]
 [ext_resource type="PackedScene" uid="uid://bvjeme52fg8uo" path="res://item/mascotte.tscn" id="9_gxufp"]
-[ext_resource type="Script" path="res://main/player_spawns.gd" id="11_mx223"]
+[ext_resource type="Script" path="res://bathtub_level/player_spawns.gd" id="11_mx223"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -112,7 +112,7 @@ shader_parameter/water_texture_scale = 4.0
 shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_q7dij")
 shader_parameter/caustic_sampler = ExtResource("2_woun1")
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("players_parent_node", "player_spawns")]
+[node name="BathtubLevel" type="Node3D" node_paths=PackedStringArray("players_parent_node", "player_spawns")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
 script = ExtResource("1_bujv1")
 players_parent_node = NodePath("Players")

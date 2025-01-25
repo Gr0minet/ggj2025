@@ -3,6 +3,9 @@ extends Control
 signal request_game_start(players: Array[Player])
 
 @export var player_join_parent: Control = null
+@onready var exit_progress_bar = $KeysVBox/ExitHBox/Control/ExitProgressBar
+var exiting = false
+const EXIT_DELAY = 1.5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +15,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if exiting:
+		var new_value = exit_progress_bar.value + delta / EXIT_DELAY * 100
+		if new_value >= 100:
+			get_tree().quit()
+		else:
+			exit_progress_bar.set_value_no_signal(new_value)
 
 
 func _on_request_game_start_by(player: Player) -> void:
@@ -27,3 +35,8 @@ func _on_request_game_start_by(player: Player) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("show_credits"):
 		$Credits.show()
+	if event.is_action_pressed("exit"):
+		exiting = true
+	if event.is_action_released("exit"):
+		exiting = false
+		exit_progress_bar.set_value_no_signal(0.0)

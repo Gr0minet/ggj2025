@@ -15,11 +15,10 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_request_game_start_by(_player_id: int) -> void:
-	var player_ids:Array[int] = []
+func _on_request_game_start_by(player_id: int) -> void:
+	var player_ids: Array[int] = [player_id]
 	for child in player_join_parent.get_children():
-		if child.player_joined:
+		if child.current_state != child.State.WAITING and child.player_id != player_id:
 			player_ids.append(child.player_id)
-	print(player_ids)
+			child.launched()
 	request_game_start.emit(player_ids)
-	print("signal de %s" % _player_id)

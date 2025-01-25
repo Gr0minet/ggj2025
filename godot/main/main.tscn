@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=23 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b2i5bmbjailsa" path="res://item/duck.tscn" id="7_t2yrm"]
 [ext_resource type="PackedScene" uid="uid://de76wbnhfpsty" path="res://item/tooth_brush.tscn" id="8_vqbr5"]
 [ext_resource type="Script" path="res://scripts/debug_draw.gd" id="8_wqv0v"]
+[ext_resource type="Script" path="res://main/player_spawns.gd" id="11_mx223"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -64,9 +65,12 @@ shader_parameter/caustic_sampler = ExtResource("2_woun1")
 [sub_resource type="PlaneMesh" id="PlaneMesh_h4pj0"]
 material = SubResource("ShaderMaterial_nyuec")
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("camera", "players_parent_node")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
 script = ExtResource("1_bujv1")
+camera = NodePath("Camera3D")
+players_parent_node = NodePath("Players")
+bubble_scene = ExtResource("4_1iwhq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -210,6 +214,39 @@ script = ExtResource("8_wqv0v")
 debug_targets = [NodePath("../Players/Bubble")]
 camera = NodePath("../Camera3D")
 draw_flags = 3
+
+[node name="PlayerSpawns" type="Node3D" parent="."]
+script = ExtResource("11_mx223")
+
+[node name="Spawn1" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23852, 1.20716, -0.606494)
+
+[node name="Spawn2" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134068, 1.20716, -0.606494)
+
+[node name="Spawn3" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4492, 1.20716, -0.606494)
+
+[node name="Spawn4" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4492, 1.20716, 0.0766094)
+
+[node name="Spawn5" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30875, 1.20716, 0.574572)
+
+[node name="Spawn6" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.414968, 1.20716, 0.574572)
+
+[node name="Spawn7" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434123, 1.20716, 0.574572)
+
+[node name="Spawn8" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47474, 1.20716, 0.497963)
+
+[node name="Spawn9" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.466043, 1.20716, -0.108531)
+
+[node name="Spawn10" type="Node3D" parent="PlayerSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421353, 1.20716, 0.140451)
 
 [connection signal="timeout" from="HUD/Countdown" to="HUD" method="_on_countdown_timeout"]
 

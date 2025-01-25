@@ -5,6 +5,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
 	menu.request_game_start.connect(_on_request_game_start)
 
 

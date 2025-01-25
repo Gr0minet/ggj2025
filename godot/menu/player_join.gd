@@ -101,8 +101,6 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not visible:
-		return
 	if event.device != player_id:
 		return
 	if event.is_action_pressed("change_color_down") and current_state == State.JOINED:

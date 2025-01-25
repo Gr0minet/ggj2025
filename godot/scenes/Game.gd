@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _on_request_game_start(players:Array[Player]) -> void:
 	main_level.start_level(players)
-	menu.hide()
+	menu.queue_free()
 	rotate_camera_anchor.set_rotating(false)
 	var tween: Tween = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(rotate_camera_anchor, "rotation", Vector3.ZERO, 1.0)

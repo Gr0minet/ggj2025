@@ -6,8 +6,6 @@ extends CharacterBody3D
 @export var acceleration : float = 0.8
 @export var deceleration : float = 0.2
 @export var max_speed : float = 10.0
-#const JUMP_VELOCITY = 400.5
-#@export var gravity_scale:float = 1.0
 
 const DEAD_ZONE = 0.5
 
@@ -70,8 +68,9 @@ func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> vo
 	var velocity_to_self:float = 0.3 # bounce back
 	var repulsion_vector:Vector3 = collision.get_normal()
 	
-	print("%s collides with %s (%s)" % [name, collider.name, collider])
-	#print(collision is Item)
+	if debug:
+		print("%s collides with %s (%s)" % [name, collider.name, collider])
+		#print(collision is Item)
 	
 	# walls are not moved
 	if collider is StaticBody3D:

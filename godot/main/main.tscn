@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=24 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b2i5bmbjailsa" path="res://item/duck.tscn" id="7_t2yrm"]
 [ext_resource type="PackedScene" uid="uid://de76wbnhfpsty" path="res://item/tooth_brush.tscn" id="8_vqbr5"]
 [ext_resource type="Script" path="res://scripts/debug_draw.gd" id="8_wqv0v"]
+[ext_resource type="PackedScene" uid="uid://bvjeme52fg8uo" path="res://item/mascotte.tscn" id="9_gxufp"]
 [ext_resource type="Script" path="res://main/player_spawns.gd" id="11_mx223"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
@@ -143,12 +144,6 @@ mesh = SubResource("PlaneMesh_h4pj0")
 
 [node name="Items" type="Node3D" parent="."]
 
-[node name="Duck" parent="Items" instance=ExtResource("7_t2yrm")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.972039, 0)
-collision_layer = 1
-collision_mask = 1
-script = null
-
 [node name="Duck2" parent="Items" instance=ExtResource("7_t2yrm")]
 transform = Transform3D(1.51506, 0, 1.3056, 0, 2, 0, -1.3056, 0, 1.51506, -0.709849, 0.972039, -0.348515)
 collision_layer = 1
@@ -166,6 +161,9 @@ transform = Transform3D(-8.74228e-08, -8.74228e-08, -2, -2, 3.82137e-15, 8.74228
 collision_layer = 1
 collision_mask = 1
 script = null
+
+[node name="Mascotte" parent="Items" instance=ExtResource("9_gxufp")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0589308, 0.98794, -0.00752424)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 7.45601e-08, 4.43755e-08, -6.72004e-08, 0.34202, 0.939693, 5.48863e-08, -0.939693, 0.34202, -2.87586e-08, 2.83241, 0.885402)

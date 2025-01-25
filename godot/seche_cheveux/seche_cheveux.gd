@@ -7,6 +7,7 @@ extends Node3D
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _timer: Timer = $Timer
 @onready var _area_3d: Area3D = $Pivot/Area3D
+@onready var _cpu_particles_3d: CPUParticles3D = $Pivot/CPUParticles3D
 
 var _body_inside_wind: Array[Node3D] = []
 
@@ -27,9 +28,11 @@ func _physics_process(delta: float) -> void:
 
 func _start_venting() -> void:
 	_timer.start(DURATION)
+	_cpu_particles_3d.emitting = true
 
 
 func _remove() -> void:
+	_cpu_particles_3d.emitting = false
 	_animation_player.play("fade_out")
 	await _animation_player.animation_finished
 	queue_free()

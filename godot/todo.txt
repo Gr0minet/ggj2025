@@ -6,4 +6,3 @@
 - Retirer les ombres des items sur l'eau ?
 - ajouter transparence au spawn du seche cheveux ?
 - Ajout vfx vent sèche cheveux
-

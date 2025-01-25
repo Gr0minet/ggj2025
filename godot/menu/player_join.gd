@@ -42,6 +42,7 @@ func joined() -> void:
 Maintiens
 [img]res://assets/xbox_button_color_a_outline.png[/img]
 pour lancer[/center]"
+	progress_bar_reset()
 
 
 func launching() -> void:
@@ -52,7 +53,7 @@ func launched() -> void:
 	current_state = State.LAUNCHED
 	rich_text_label.text = "[center]Joueur " + str(player_id + 1) + "
 Prépare-toi !"
-	progress_bar_reset()
+	progress_bar.set_value_no_signal(100.0)
 
 
 func _process(delta: float) -> void:
@@ -61,7 +62,8 @@ func _process(delta: float) -> void:
 		if new_value >= 100:
 			launched()
 			request_game_start_by.emit(player_id)
-		progress_bar.set_value_no_signal(new_value)
+		else:
+			progress_bar.set_value_no_signal(new_value)
 
 
 func _unhandled_input(event: InputEvent) -> void:

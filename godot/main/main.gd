@@ -10,7 +10,7 @@ extends Node3D
 	#await get_tree().create_timer(5.0).timeout
 	#start_level()
 
-func start_level() -> void:
+func start_level(players:Array[Player]) -> void:
 	camera.current = true
 	_hud.start_timer(3)
 

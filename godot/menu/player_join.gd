@@ -1,12 +1,11 @@
 class_name PlayerJoin
 extends PanelContainer
 
-signal request_game_start_by(player_id: int)
+signal request_game_start_by(player: Player)
 
 
 @export var player_id: int
-@onready var rich_text_label = $VBoxContainer/RichTextLabel
-@onready var progress_bar = $TextureProgressBar
+
 
 const JOIN_DELAY = 1.5
 
@@ -19,6 +18,10 @@ enum State{
 
 var current_state: State = State.WAITING
 
+var player:Player = null
+
+@onready var rich_text_label = $VBoxContainer/RichTextLabel
+@onready var progress_bar = $TextureProgressBar
 
 func _ready() -> void:
 	waiting()
@@ -38,6 +41,10 @@ pour rejoindre[/center]"
 
 func joined() -> void:
 	current_state = State.JOINED
+	
+	player = Player.new(player_id)
+	player.color = Color.WHITE
+	
 	rich_text_label.text = "[center]Joueur " + str(player_id + 1) + "
 Maintiens
 [img]res://assets/xbox_button_color_a_outline.png[/img]
@@ -61,7 +68,7 @@ func _process(delta: float) -> void:
 		var new_value = progress_bar.value + delta / JOIN_DELAY * 100
 		if new_value >= 100:
 			launched()
-			request_game_start_by.emit(player_id)
+			request_game_start_by.emit(player)
 		else:
 			progress_bar.set_value_no_signal(new_value)
 

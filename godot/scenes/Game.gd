@@ -12,6 +12,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_request_game_start(_player_ids:Array[int]) -> void:
-	main_level.start_level()
+func _on_request_game_start(players:Array[Player]) -> void:
+	main_level.start_level(players)
 	menu.hide()

@@ -1,6 +1,6 @@
 extends Control
 
-signal request_game_start(player_ids: Array[int])
+signal request_game_start(players: Array[Player])
 
 @export var player_join_parent: Control = null
 
@@ -15,10 +15,10 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_request_game_start_by(player_id: int) -> void:
-	var player_ids: Array[int] = [player_id]
+func _on_request_game_start_by(player: Player) -> void:
+	var players: Array[Player] = [player]
 	for child in player_join_parent.get_children():
-		if child.current_state != child.State.WAITING and child.player_id != player_id:
-			player_ids.append(child.player_id)
+		if child.current_state != child.State.WAITING and child.player_id != player.id:
+			players.append(Player.new(child.player_id))
 			child.launched()
-	request_game_start.emit(player_ids)
+	request_game_start.emit(players)

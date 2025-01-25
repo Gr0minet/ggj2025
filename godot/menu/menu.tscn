@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpiqhe2x4htta"]
+
+[ext_resource type="Script" path="res://menu/menu.gd" id="1_xshr6"]
+[ext_resource type="PackedScene" uid="uid://c5umynsbl4k7j" path="res://menu/player_join.tscn" id="2_67jmx"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_xshr6")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.5
+offset_right = 42.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "BLOOD BATH
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PlayerJoin0" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="PlayerJoin1" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
+layout_mode = 2
+player_id = 1
+
+[node name="PlayerJoin2" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
+layout_mode = 2
+player_id = 2
+
+[node name="PlayerJoin3" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
+layout_mode = 2
+player_id = 3

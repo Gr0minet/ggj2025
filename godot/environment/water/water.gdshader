@@ -23,7 +23,7 @@ float get_noise(vec2 offset){
 
 void vertex(){
 	base_offset = (UV * 0.5) + TIME * 0.01;
-	float h = get_noise(base_offset) * 0.2;
+	float h = get_noise(base_offset) * 0.1;
 	VERTEX.y += h;
 	vec3 normal = normalize(vec3(
 		h - get_noise(base_offset + vec2(0.8, 0.0)),

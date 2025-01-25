@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5umynsbl4k7j"]
+[gd_scene load_steps=5 format=3 uid="uid://c5umynsbl4k7j"]
 
 [ext_resource type="Script" path="res://menu/player_join.gd" id="1_4ec8c"]
-[ext_resource type="Texture2D" uid="uid://dtt1bn5aqp5l3" path="res://icon.svg" id="2_66lwi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vk6d6"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Gradient" id="Gradient_bkmsx"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0.988235, 0, 0.47451, 1, 1, 1, 0.572549)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j3gxb"]
+gradient = SubResource("Gradient_bkmsx")
+fill = 1
+fill_from = Vector2(-1, -1)
+fill_to = Vector2(1, 1)
 
 [node name="PlayerJoin" type="PanelContainer"]
+clip_children = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,6 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vk6d6")
 script = ExtResource("1_4ec8c")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -19,16 +36,16 @@ alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 bbcode_enabled = true
 text = "azea
 "
-
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
-layout_mode = 2
+fit_content = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 2
+step = 0.0
 value = 20.0
 fill_mode = 5
-texture_progress = ExtResource("2_66lwi")
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_j3gxb")

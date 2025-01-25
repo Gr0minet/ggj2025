@@ -78,3 +78,8 @@ func _set_seche_cheveux_respawn_timer() -> void:
 
 func _on_seche_cheveux_respawn_timer_timeout() -> void:
 	_spawn_seche_cheveux()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("exit"):
+		get_tree().quit()

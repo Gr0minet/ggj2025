@@ -52,7 +52,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_imin5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nyuec"]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("1_gudu6")
 shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
 shader_parameter/water_depth_color = Color(0.133333, 0.490196, 0.823529, 1)
@@ -64,6 +64,7 @@ shader_parameter/caustic_sampler = ExtResource("2_woun1")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h4pj0"]
 material = SubResource("ShaderMaterial_nyuec")
+size = Vector2(4, 4)
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("camera", "players_parent_node")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
@@ -127,15 +128,15 @@ transform = Transform3D(0.996195, 0, -0.0871558, 0, 1, 0, 0.0871558, 0, 0.996195
 shape = SubResource("BoxShape3D_1b16v")
 
 [node name="FLOTTE2" parent="." instance=ExtResource("3_qnajh")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.276916, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.179578, 0)
+visible = false
 
 [node name="FLOTTE" parent="FLOTTE2" index="0"]
 transform = Transform3D(1.04346, 0, 0, 0, 1.04346, 0, 0, 0, 1.04346, 0, 0.589272, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_6uoci")
 
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975846, 0)
 mesh = SubResource("PlaneMesh_h4pj0")
 
 [node name="Players" type="Node3D" parent="."]

@@ -45,7 +45,7 @@ void fragment() {
   float depth_tex = textureLod(DEPTH_TEXTURE,SCREEN_UV,0.0).r;
   vec4 world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV*2.0-1.0,depth_tex,1.0);
   world_pos.xyz /= world_pos.w;
-  
+
     vec3 screen_normal = texture(NORMAL_ROUGHNESS_TEXTURE, SCREEN_UV).xyz;
     screen_normal = screen_normal * 2.0 - 1.0;
 

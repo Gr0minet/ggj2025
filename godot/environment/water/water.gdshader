@@ -24,8 +24,8 @@ float get_noise(vec2 offset){
 
 void vertex(){
   base_offset = (UV * 0.5) + TIME * 0.01;
-  float h = get_noise(base_offset) * 0.1;
-  VERTEX.y += h;
+  float h = 1.0;//get_noise(base_offset) * 0.1;
+  //VERTEX.y += h;
   vec3 normal = normalize(vec3(
     h - get_noise(base_offset + vec2(0.8, 0.0)),
     8.0,
@@ -62,14 +62,14 @@ void fragment() {
   camera_position = VIEW_MATRIX * camera_position;
 
   // check if the pixel is inside the bathtub or not
-  bool inside = dot(screen_normal, camera_position.xyz - world_pos.xyz) > 0.0;
-  // make sure we have a object behind the water
-  bool valid = depth_tex > 0.0;
-
-  // if we're outside the bathtub, discard the pixel
-  if (!valid || !inside) {
-    discard;
-  }
+  //bool inside = dot(screen_normal, camera_position.xyz - world_pos.xyz) > 0.0;
+  //// make sure we have a object behind the water
+  //bool valid = depth_tex > 0.0;
+//
+  //// if we're outside the bathtub, discard the pixel
+  //if (!valid || !inside) {
+    //discard;
+  //}
 
    ROUGHNESS = 0.95;
   SPECULAR = 0.5;

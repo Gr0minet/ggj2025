@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=21 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
@@ -46,27 +46,6 @@ shader_parameter/water_depth_distance = 8.0
 shader_parameter/water_texture_scale = 4.0
 shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_q7dij")
 shader_parameter/caustic_sampler = ExtResource("2_woun1")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_imin5"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xrw8s"]
-seamless = true
-noise = SubResource("FastNoiseLite_imin5")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nyuec"]
-render_priority = -1
-shader = ExtResource("1_gudu6")
-shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
-shader_parameter/water_depth_color = Color(0.133333, 0.490196, 0.823529, 1)
-shader_parameter/water_edge_distance = 0.02
-shader_parameter/water_depth_distance = 8.0
-shader_parameter/water_texture_scale = 4.0
-shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_xrw8s")
-shader_parameter/caustic_sampler = ExtResource("2_woun1")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_h4pj0"]
-material = SubResource("ShaderMaterial_nyuec")
-size = Vector2(4, 4)
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("players_parent_node", "player_spawns")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
@@ -116,7 +95,7 @@ transform = Transform3D(-0.996083, -1.44218e-09, -0.088425, -2.2646e-09, 1, 9.20
 shape = SubResource("BoxShape3D_1b16v")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0.546639, 0.6, 0.52965)
+transform = Transform3D(0.991507, 0, 0.130059, 0, 1, 0, -0.130059, 0, 0.991507, 0.546639, 0.6, 0.52965)
 shape = SubResource("BoxShape3D_1b16v")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Baignoire"]
@@ -133,15 +112,10 @@ shape = SubResource("BoxShape3D_1b16v")
 
 [node name="FLOTTE2" parent="." instance=ExtResource("3_qnajh")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.179578, 0)
-visible = false
 
 [node name="FLOTTE" parent="FLOTTE2" index="0"]
 transform = Transform3D(1.04346, 0, 0, 0, 1.04346, 0, 0, 0, 1.04346, 0, 0.589272, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_6uoci")
-
-[node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975846, 0)
-mesh = SubResource("PlaneMesh_h4pj0")
 
 [node name="Players" type="Node3D" parent="."]
 
@@ -160,7 +134,7 @@ collision_mask = 1
 script = null
 
 [node name="ToothBrush" parent="Items" instance=ExtResource("8_vqbr5")]
-transform = Transform3D(-8.74228e-08, -8.74228e-08, -2, -2, 3.82137e-15, 8.74228e-08, -7.62305e-22, 2, -8.74228e-08, 0.2, 1.03402, 0.4)
+transform = Transform3D(-8.74228e-08, -8.74228e-08, -2, -2, 3.82137e-15, 8.74228e-08, -7.62305e-22, 2, -8.74228e-08, 0.2, 1.01571, 0.4)
 collision_layer = 1
 collision_mask = 1
 script = null

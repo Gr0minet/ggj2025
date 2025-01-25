@@ -10,7 +10,7 @@ radius = 0.125
 height = 0.25
 
 [node name="Bubble" type="CharacterBody3D"]
-collision_mask = 3
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_pvsgq")
 

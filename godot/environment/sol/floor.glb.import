@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b5h2nmyraqa6q"
-path="res://.godot/imported/BAIGNOIRE_SMOOTH.glb-cb8ffdd663263c2fc869a4d10909e157.scn"
+uid="uid://d07dk8b1m8cbs"
+path="res://.godot/imported/floor.glb-1ac3277318ecf51900c40b27213b3e2e.scn"
 
 [deps]
 
-source_file="res://environment/BAIGNOIRE_SMOOTH.glb"
-dest_files=["res://.godot/imported/BAIGNOIRE_SMOOTH.glb-cb8ffdd663263c2fc869a4d10909e157.scn"]
+source_file="res://environment/sol/floor.glb"
+dest_files=["res://.godot/imported/floor.glb-1ac3277318ecf51900c40b27213b3e2e.scn"]
 
 [params]
 

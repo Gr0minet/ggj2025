@@ -21,11 +21,11 @@ var current_state: State = State.WAITING
 
 var player: Player = null
 
-@onready var label = $MarginContainer/VBoxContainer/Label
-@onready var rich_text_label = $MarginContainer/VBoxContainer/HBoxContainer/RichTextLabel
-@onready var progress_bar = $TextureProgressBar
-@onready var color_picker = $MarginContainer/VBoxContainer/HBoxContainer/ColorPicker
-@onready var color_rectangle = $MarginContainer/VBoxContainer/HBoxContainer/ColorPicker/ColorRect
+@onready var label = $ClipAlphaPatch/MarginContainer/VBoxContainer/Label
+@onready var rich_text_label = $ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer/RichTextLabel
+@onready var progress_bar = $ClipAlphaPatch/TextureProgressBar
+@onready var color_picker = $ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer/ColorPicker
+@onready var color_rectangle = $ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer/ColorPicker/ColorRect
 
 
 func _ready() -> void:
@@ -72,7 +72,7 @@ func change_color(index_change: int) -> void:
 	current_color_index = (current_color_index + index_change) % COLORS.size()
 	var new_color = COLORS[current_color_index]
 	var start_color = Color(new_color, 0.5)
-	$TextureProgressBar.texture_progress.gradient.colors = PackedColorArray([start_color, start_color.lightened(0.8)])
+	$ClipAlphaPatch/TextureProgressBar.texture_progress.gradient.colors = PackedColorArray([start_color, start_color.lightened(0.8)])
 	player.color = new_color
 	color_rectangle.color = new_color
 

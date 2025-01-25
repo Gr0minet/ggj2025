@@ -1,13 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5umynsbl4k7j"]
+[gd_scene load_steps=7 format=3 uid="uid://c5umynsbl4k7j"]
 
 [ext_resource type="Script" path="res://menu/player_join.gd" id="1_4ec8c"]
 [ext_resource type="Texture2D" uid="uid://cahfculria4gf" path="res://assets/xbox_dpad_vertical_outline.png" id="2_wx4gi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vk6d6"]
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+bg_color = Color(0.6, 0.6, 0.6, 0.533333)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q048x"]
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
 
 [sub_resource type="Gradient" id="Gradient_bkmsx"]
 interpolation_mode = 2
@@ -20,7 +27,6 @@ fill_from = Vector2(-1, -1)
 fill_to = Vector2(1, 1)
 
 [node name="PlayerJoin" type="PanelContainer"]
-clip_children = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,37 +37,50 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_vk6d6")
 script = ExtResource("1_4ec8c")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ClipAlphaPatch" type="PanelContainer" parent="."]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q048x")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ClipAlphaPatch"]
+layout_mode = 2
+step = 0.0
+value = 20.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_j3gxb")
+
+[node name="MarginContainer" type="MarginContainer" parent="ClipAlphaPatch"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ClipAlphaPatch/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ClipAlphaPatch/MarginContainer/VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Padding" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Padding" type="CenterContainer" parent="ClipAlphaPatch/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ClipAlphaPatch/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="ColorPicker" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ColorPicker" type="HBoxContainer" parent="ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ColorPicker"]
+[node name="ColorRect" type="ColorRect" parent="ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer/ColorPicker"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -69,12 +88,12 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.25
 color = Color(1, 0, 0, 1)
 
-[node name="PadArrows" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ColorPicker"]
+[node name="PadArrows" type="TextureRect" parent="ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer/ColorPicker"]
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("2_wx4gi")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -82,11 +101,3 @@ bbcode_enabled = true
 text = "azea
 "
 fit_content = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-layout_mode = 2
-step = 0.0
-value = 20.0
-fill_mode = 5
-nine_patch_stretch = true
-texture_progress = SubResource("GradientTexture2D_j3gxb")

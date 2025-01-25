@@ -7,11 +7,20 @@ extends CharacterBody3D
 @export var deceleration : float = 0.2
 @export var max_speed : float = 10.0
 
+# Material and color related variables
+@export var mesh_instance : MeshInstance3D = null
+var _mesh_material:StandardMaterial3D = null
+
 const DEAD_ZONE = 0.5
 
 var allow_input:bool = true
 
 var _input_dir:Vector2 = Vector2.ZERO
+
+func _ready() -> void:
+	if mesh_instance:
+		_mesh_material = mesh_instance.get_active_material(0).duplicate()
+		mesh_instance.set_surface_override_material(0, _mesh_material)
 
 func _physics_process(delta: float) -> void:
 
@@ -89,3 +98,10 @@ func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> vo
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * max_speed
 	velocity.y = 0
+
+## If preserve_alpha, keep the old alpha and only change the rgb
+func set_color_tint(color:Color, preserve_alpha:bool=true):
+	var old_alpha : float = _mesh_material.albedo_color.a
+	if preserve_alpha:
+		color.a = old_alpha
+	_mesh_material.albedo_color = color

@@ -41,3 +41,5 @@ func _init_players(players:Array[Player]) -> void:
 		var bubble:Bubble = bubble_scene.instantiate()
 		players_parent_node.add_child(bubble)
 		bubble.global_position = spawn_pos
+		print("set color %s" % p.color)
+		bubble.set_color_tint(p.color)

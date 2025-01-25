@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=25 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
 [ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://environment/water/textures/caustic_texture.png" id="2_woun1"]
-[ext_resource type="PackedScene" uid="uid://b5h2nmyraqa6q" path="res://environment/BAIGNOIRE_SMOOTH.glb" id="3_4tryq"]
+[ext_resource type="PackedScene" uid="uid://b5h2nmyraqa6q" path="res://environment/baignoire/BAIGNOIRE_SMOOTH.glb" id="3_4tryq"]
+[ext_resource type="PackedScene" uid="uid://d07dk8b1m8cbs" path="res://environment/sol/floor.glb" id="3_84s0j"]
 [ext_resource type="PackedScene" uid="uid://cpsw08ate1kf0" path="res://assets/FLOTTE.glb" id="3_qnajh"]
 [ext_resource type="PackedScene" uid="uid://byejtqwx88kyu" path="res://scenes/bubble.tscn" id="4_1iwhq"]
 [ext_resource type="Script" path="res://main/hud.gd" id="4_f7kia"]
@@ -80,12 +81,14 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7x14t")
 
+[node name="floor" parent="." instance=ExtResource("3_84s0j")]
+
 [node name="Baignoire" type="StaticBody3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 2
 collision_mask = 0
 
-[node name="BAIGNOIRE_SMOOTH" parent="Baignoire" instance=ExtResource("3_4tryq")]
+[node name="BAIGNOIRE_SMOOTH2" parent="Baignoire" instance=ExtResource("3_4tryq")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Baignoire"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.86198e-15, 0.6, -0.55)

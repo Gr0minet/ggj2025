@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpiqhe2x4htta"]
+[gd_scene load_steps=5 format=3 uid="uid://bpiqhe2x4htta"]
 
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_xshr6"]
 [ext_resource type="PackedScene" uid="uid://c5umynsbl4k7j" path="res://menu/player_join.tscn" id="2_67jmx"]
+[ext_resource type="Texture2D" uid="uid://diat305kkvrd0" path="res://assets/xbox_button_color_y_outline.png" id="3_qqugk"]
+[ext_resource type="Texture2D" uid="uid://ulhgphjey7qq" path="res://assets/xbox_button_color_b_outline.png" id="4_xihb2"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("player_join_parent")]
 layout_mode = 3
@@ -27,17 +29,6 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "BLOOD BATH
 "
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-text = "AZEAZEAZE
-AZEAZE"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -70,3 +61,39 @@ player_id = 2
 [node name="PlayerJoin3" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
 layout_mode = 2
 player_id = 3
+
+[node name="KeysVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = 32.0
+offset_right = -37.0
+offset_bottom = 164.0
+grow_horizontal = 0
+
+[node name="CreditsHBox" type="HBoxContainer" parent="KeysVBox"]
+layout_mode = 2
+
+[node name="CreditsTextureRect" type="TextureRect" parent="KeysVBox/CreditsHBox"]
+layout_mode = 2
+texture = ExtResource("3_qqugk")
+
+[node name="CreditsLabel" type="Label" parent="KeysVBox/CreditsHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Credits
+"
+
+[node name="ExitHBox" type="HBoxContainer" parent="KeysVBox"]
+layout_mode = 2
+
+[node name="ExitTextureRect" type="TextureRect" parent="KeysVBox/ExitHBox"]
+layout_mode = 2
+texture = ExtResource("4_xihb2")
+
+[node name="ExitLabel" type="Label" parent="KeysVBox/ExitHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Exit"

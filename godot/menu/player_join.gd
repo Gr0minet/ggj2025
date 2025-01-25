@@ -30,9 +30,12 @@ var player: Player = null
 
 func _ready() -> void:
 	player = Player.new(player_id)
-	change_color(0)
-	label.text = "Joueur " + str(player_id + 1)
+	# We don't call set_color here because for some reason TexturedProgressBar
+	# isn't initialized yet, so we defer the call to enter_joined_state
+	current_color_index = player_id
+	label.text = "Player " + str(player_id + 1)
 	enter_waiting_state()
+	
 
 
 func progress_bar_reset() -> void:
@@ -48,11 +51,12 @@ pour rejoindre[/center]"
 
 
 func enter_joined_state() -> void:
+	set_color(current_color_index)
 	current_state = State.JOINED
 	color_picker.show()
-	rich_text_label.text = "[center]Maintiens
+	rich_text_label.text = "[center]Keep
 [img]res://assets/xbox_button_color_a_outline.png[/img]
-pour lancer[/center]"
+pressed to start[/center]"
 	progress_bar_reset()
 
 
@@ -64,17 +68,25 @@ func enter_launching_state() -> void:
 func enter_launched_state() -> void:
 	color_picker.hide()
 	current_state = State.LAUNCHED
-	rich_text_label.text = "[center]Prépare-toi ![/center]"
+	rich_text_label.text = "[center]Get ready![/center]"
 	progress_bar.set_value_no_signal(100.0)
 
 
-func change_color(index_change: int) -> void:
-	current_color_index = (current_color_index + index_change) % COLORS.size()
-	var new_color = COLORS[current_color_index]
+func set_color(index: int) -> void:
+	current_color_index = index
+	var new_color = COLORS[index]
 	var start_color = Color(new_color, 0.5)
-	$ClipAlphaPatch/TextureProgressBar.texture_progress.gradient.colors = PackedColorArray([start_color, start_color.lightened(0.8)])
+	progress_bar.texture_progress.gradient.colors = PackedColorArray([start_color, start_color.lightened(0.8)])
 	player.color = new_color
 	color_rectangle.color = new_color
+
+
+func previous_color() -> void:
+	set_color((current_color_index - 1) % COLORS.size())
+
+
+func next_color() -> void:
+	set_color((current_color_index + 1) % COLORS.size())
 
 
 func _process(delta: float) -> void:
@@ -91,9 +103,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.device != player_id:
 		return
 	if event.is_action_pressed("change_color_down") and current_state == State.JOINED:
-		change_color(-1)
+		previous_color()
 	if event.is_action_pressed("change_color_up") and current_state == State.JOINED:
-		change_color(1)
+		next_color()
 	if event.is_action_pressed("join_game"):
 		if current_state == State.WAITING:
 			enter_joined_state()

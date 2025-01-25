@@ -5,6 +5,8 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_wys75"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_shmpx"]
+radius = 0.125
+height = 0.25
 
 [node name="Bubble" type="CharacterBody3D"]
 collision_mask = 3

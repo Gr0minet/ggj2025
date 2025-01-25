@@ -43,8 +43,9 @@ func progress_bar_reset() -> void:
 
 func enter_waiting_state() -> void:
 	current_state = State.WAITING
-	rich_text_label.text = "[center][img]res://assets/xbox_button_color_a_outline.png[/img]
-pour rejoindre[/center]"
+	rich_text_label.text = "[center]Press
+[img]res://assets/xbox_button_color_a_outline.png[/img]
+to join[/center]"
 	color_picker.hide()
 	progress_bar_reset()
 

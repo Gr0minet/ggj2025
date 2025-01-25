@@ -40,6 +40,8 @@ func _swap_fullscreen_mode():
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not visible:
+		return
 	if event.is_action_pressed("show_credits"):
 		$Credits.show()
 	if event.is_action_pressed("exit"):

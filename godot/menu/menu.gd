@@ -19,6 +19,6 @@ func _on_request_game_start_by(player: Player) -> void:
 	var players: Array[Player] = [player]
 	for child in player_join_parent.get_children():
 		if child.current_state != child.State.WAITING and child.player_id != player.id:
-			players.append(Player.new(child.player_id))
-			child.launched()
+			players.append(child.player)
+			child.enter_launched_state()
 	request_game_start.emit(players)

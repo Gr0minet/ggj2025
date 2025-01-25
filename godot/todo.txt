@@ -8,6 +8,8 @@
 - Shader cut eau baignoire
 - Animation bulle qui éclate ?
 - Retirer les ombres des items sur l'eau ?
+- ajouter transparence au spawn du seche cheveux ?
+- Fix bug quand la bubble collide avec un item (il est propulsé)
 
 
 # Sèche cheveux (v0.2)

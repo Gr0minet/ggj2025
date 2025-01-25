@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://djgyncaelw28c"
-path="res://.godot/imported/hairdryer.glb-e5976b740a9e5da045621b2cc03d37ac.scn"
+path="res://.godot/imported/hairdryer.glb-6300b4fbe1b239036647594e24b38cc7.scn"
 
 [deps]
 
-source_file="res://assets/hairdryer.glb"
-dest_files=["res://.godot/imported/hairdryer.glb-e5976b740a9e5da045621b2cc03d37ac.scn"]
+source_file="res://seche_cheveux/hairdryer.glb"
+dest_files=["res://.godot/imported/hairdryer.glb-6300b4fbe1b239036647594e24b38cc7.scn"]
 
 [params]
 

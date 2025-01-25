@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://rij5ucplv7na"]
+
+[ext_resource type="Script" path="res://seche_cheveux/seche_cheveux.gd" id="1_j0jrd"]
+[ext_resource type="PackedScene" uid="uid://djgyncaelw28c" path="res://seche_cheveux/hairdryer.glb" id="1_y6cma"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hf1wa"]
+radius = 0.0750245
+height = 1.65777
+
+[sub_resource type="Animation" id="Animation_ugku8"]
+resource_name = "fade_in"
+length = 2.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pghwl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_j7ufn"]
+resource_name = "fade_out"
+length = 2.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ev7k2"]
+_data = {
+"RESET": SubResource("Animation_pghwl"),
+"fade_in": SubResource("Animation_ugku8"),
+"fade_out": SubResource("Animation_j7ufn")
+}
+
+[node name="SecheCheveux" type="Node3D"]
+script = ExtResource("1_j0jrd")
+DURATION = 1.0
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="hairdryer" parent="Pivot" instance=ExtResource("1_y6cma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272034, 0)
+
+[node name="Area3D" type="Area3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272034, 0.615878)
+collision_layer = 0
+collision_mask = 5
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.569212)
+shape = SubResource("CapsuleShape3D_hf1wa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ev7k2")
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Pivot/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Pivot/Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

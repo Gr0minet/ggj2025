@@ -42,7 +42,8 @@ func _process(delta: float) -> void:
 		var new_value = progress_bar.value + delta / JOIN_DELAY * 100
 		if new_value >= 100:
 			request_game_start_by.emit(player_id)
-		progress_bar.set_value_no_signal()
+			progress_bar_reset()
+		progress_bar.set_value_no_signal(new_value)
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -32,6 +32,13 @@ func _on_request_game_start_by(player: Player) -> void:
 	request_game_start.emit(players)
 
 
+func _swap_fullscreen_mode():
+	if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("show_credits"):
 		$Credits.show()
@@ -40,3 +47,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("exit"):
 		exiting = false
 		exit_progress_bar.set_value_no_signal(0.0)
+	if event.is_action_pressed("full_screen"):
+		_swap_fullscreen_mode()

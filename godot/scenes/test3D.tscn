@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdxji7e38qeg0"]
+[gd_scene load_steps=5 format=3 uid="uid://cdxji7e38qeg0"]
 
 [ext_resource type="PackedScene" uid="uid://byejtqwx88kyu" path="res://scenes/bubble.tscn" id="1_ychtd"]
+[ext_resource type="Script" path="res://scripts/debug_draw.gd" id="2_kn2p5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_du6xf"]
 
@@ -14,12 +15,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8946, 0)
 gravity_scale = 0.0
 
 [node name="Bubble2" parent="." instance=ExtResource("1_ychtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8946, -3.03029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8946, -1.79241)
 player_device_id = 1
 gravity_scale = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.774746, 0.632273, 0, -0.632273, 0.774746, 0, 4.79536, 5.22092)
+transform = Transform3D(1, 0, 0, 0, 0.774746, 0.632273, 0, -0.632273, 0.774746, 0, 3.54499, 3.37254)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 2
@@ -82,3 +83,13 @@ shape = SubResource("BoxShape3D_gejmw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.752817, 0.65823, 0, -0.65823, 0.752817, 0, 2.52747, 0)
+
+[node name="debugDraw" type="Control" parent="." node_paths=PackedStringArray("debug_targets", "camera")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_kn2p5")
+debug_targets = [NodePath("../Bubble"), NodePath("../Bubble2")]
+camera = NodePath("../Camera3D")
+draw_flags = 3

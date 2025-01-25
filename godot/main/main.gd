@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var camera:Camera3D = null
+#@export var camera:Camera3D = null
 @export var players_parent_node:PlayerSpawns = null
 @export var bubble_scene:PackedScene = null
 
@@ -16,7 +16,7 @@ func start_level(players:Array[Player]) -> void:
 	_clear_players()
 	_init_players(players)
 	
-	camera.current = true
+	#camera.current = true
 	_hud.start_timer(3)
 
 

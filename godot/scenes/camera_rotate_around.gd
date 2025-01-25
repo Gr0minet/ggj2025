@@ -22,3 +22,7 @@ func _process(delta: float) -> void:
 		return
 	
 	rotation.y += rotation_speed * delta / 10 # rotation speed is in decidegree
+
+
+func set_rotating(on: bool) -> void:
+	set_process(on)

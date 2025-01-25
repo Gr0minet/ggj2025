@@ -67,10 +67,9 @@ shader_parameter/caustic_sampler = ExtResource("2_woun1")
 material = SubResource("ShaderMaterial_nyuec")
 size = Vector2(4, 4)
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("camera", "players_parent_node")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("players_parent_node")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
 script = ExtResource("1_bujv1")
-camera = NodePath("Camera3D")
 players_parent_node = NodePath("Players")
 bubble_scene = ExtResource("4_1iwhq")
 
@@ -165,7 +164,7 @@ script = null
 [node name="Mascotte" parent="Items" instance=ExtResource("9_gxufp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0589308, 0.98794, -0.00752424)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="TargetCameraPosition" type="Marker3D" parent="."]
 transform = Transform3D(1, 7.45601e-08, 4.43755e-08, -6.72004e-08, 0.34202, 0.939693, 5.48863e-08, -0.939693, 0.34202, -2.87586e-08, 2.83241, 0.885402)
 
 [node name="HUD" type="Control" parent="."]
@@ -196,7 +195,7 @@ theme_override_font_sizes/font_size = 64
 
 [node name="Countdown" type="Timer" parent="HUD"]
 
-[node name="debugDraw" type="Control" parent="." node_paths=PackedStringArray("debug_targets", "camera")]
+[node name="debugDraw" type="Control" parent="." node_paths=PackedStringArray("debug_targets")]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -204,7 +203,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_wqv0v")
 debug_targets = [null]
-camera = NodePath("../Camera3D")
 draw_flags = 3
 
 [node name="PlayerSpawns" type="Node3D" parent="."]

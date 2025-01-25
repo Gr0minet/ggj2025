@@ -6,6 +6,8 @@ extends CharacterBody3D
 @export var acceleration : float = 0.8
 @export var deceleration : float = 0.2
 @export var max_speed : float = 10.0
+@onready var cpu_particles_3d: CPUParticles3D = $CPUParticles3D
+@onready var bullesaturee: Node3D = $BULLESATUREE
 
 # Material and color related variables
 @export var mesh_instance : MeshInstance3D = null
@@ -65,6 +67,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func die() -> void:
+	cpu_particles_3d.emitting = true
+	bullesaturee.visible = false
+	await cpu_particles_3d.finished
 	queue_free.call_deferred()
 
 func allow_player_input(allow:bool) -> void:

@@ -1,5 +1,7 @@
 extends PanelContainer
 
+signal request_game_start_by(player_id: int)
+
 
 @export var player_id: int
 @onready var rich_text_label = $VBoxContainer/RichTextLabel
@@ -13,12 +15,17 @@ func _ready() -> void:
 	player_reset()
 
 
+func progress_bar_reset() -> void:
+	progress_bar.value = 0.0
+
+
+
 func player_reset() -> void:
 	rich_text_label.text = "[center]Joueur " + str(player_id + 1) + "
 [img]res://assets/xbox_button_color_a_outline.png[/img]
 pour rejoindre[/center]"
 	player_joined = false
-	progress_bar.value = 0.0
+	progress_bar_reset()
 
 
 func player_join(join_player_id: int) -> void:
@@ -32,14 +39,20 @@ pour lancer[/center]"
 
 func _process(delta: float) -> void:
 	if join_touch_pressed:
-		progress_bar.set_value_no_signal(progress_bar.value + delta / JOIN_DELAY * 100)
+		var new_value = progress_bar.value + delta / JOIN_DELAY * 100
+		if new_value >= 100:
+			request_game_start_by.emit(player_id)
+		progress_bar.set_value_no_signal()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("join_game") and event.device == 0:
+	if event.device != player_id:
+		return
+	if event.is_action_pressed("join_game"):
 		if not player_joined:
 			player_join(self.player_id)
 		else:
 			join_touch_pressed = true
 	if event.is_action_released("join_game"):
 		join_touch_pressed = false
+		progress_bar_reset()

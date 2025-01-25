@@ -23,7 +23,7 @@ var player: Player = null
 
 @onready var label = $ClipAlphaPatch/MarginContainer/VBoxContainer/Label
 @onready var rich_text_label = $ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer/RichTextLabel
-@onready var progress_bar = $ClipAlphaPatch/TextureProgressBar
+@onready var progress_bar: TextureProgressBar = $ClipAlphaPatch/TextureProgressBar
 @onready var color_picker = $ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer/ColorPicker
 @onready var color_rectangle = $ClipAlphaPatch/MarginContainer/VBoxContainer/HBoxContainer/ColorPicker/ColorRect
 
@@ -34,6 +34,7 @@ func _ready() -> void:
 	# isn't initialized yet, so we defer the call to enter_joined_state
 	current_color_index = player_id
 	label.text = "Player " + str(player_id + 1)
+	progress_bar.texture_progress = progress_bar.texture_progress.duplicate(true)
 	enter_waiting_state()
 
 

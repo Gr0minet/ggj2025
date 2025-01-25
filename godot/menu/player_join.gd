@@ -35,7 +35,6 @@ func _ready() -> void:
 	current_color_index = player_id
 	label.text = "Player " + str(player_id + 1)
 	enter_waiting_state()
-	
 
 
 func progress_bar_reset() -> void:

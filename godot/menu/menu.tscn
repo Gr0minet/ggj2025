@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpiqhe2x4htta"]
+[gd_scene load_steps=6 format=3 uid="uid://bpiqhe2x4htta"]
 
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_xshr6"]
 [ext_resource type="PackedScene" uid="uid://c5umynsbl4k7j" path="res://menu/player_join.tscn" id="2_67jmx"]
 [ext_resource type="Texture2D" uid="uid://diat305kkvrd0" path="res://assets/xbox_button_color_y_outline.png" id="3_qqugk"]
 [ext_resource type="Texture2D" uid="uid://ulhgphjey7qq" path="res://assets/xbox_button_color_b_outline.png" id="4_xihb2"]
+[ext_resource type="PackedScene" uid="uid://bb6rnwye04xbh" path="res://menu/credits.tscn" id="5_bcvg8"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("player_join_parent")]
 layout_mode = 3
@@ -97,3 +98,7 @@ texture = ExtResource("4_xihb2")
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Exit"
+
+[node name="Credits" parent="." instance=ExtResource("5_bcvg8")]
+visible = false
+layout_mode = 1

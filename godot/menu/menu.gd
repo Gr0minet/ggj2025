@@ -22,3 +22,8 @@ func _on_request_game_start_by(player: Player) -> void:
 			players.append(child.player)
 			child.enter_launched_state()
 	request_game_start.emit(players)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("show_credits"):
+		$Credits.show()

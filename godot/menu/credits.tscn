@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb6rnwye04xbh"]
+
+[ext_resource type="Script" path="res://menu/credits.gd" id="1_0glh3"]
+[ext_resource type="Texture2D" uid="uid://ulhgphjey7qq" path="res://assets/xbox_button_color_b_outline.png" id="1_j6bgo"]
+[ext_resource type="Script" path="res://menu/credits_text.gd" id="1_qo0p8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skbrv"]
+bg_color = Color(0.393086, 0.393086, 0.393085, 1)
+
+[node name="Credits" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_skbrv")
+script = ExtResource("1_0glh3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/bold_italics_font_size = 64
+theme_override_font_sizes/italics_font_size = 64
+theme_override_font_sizes/mono_font_size = 64
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/bold_font_size = 64
+bbcode_enabled = true
+text = "[center]Credits[/center]"
+
+[node name="CreditsText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[b]Code[/b]
+    [url=https://github.com/Gr0minet]Grominet[/url], [url=https://github.com/tehelka-gamedev]Tehelka[/url], [url=https://github.com/m09]m09[/url]
+
+[b]3D Art[/b]
+    Joub, Thibaud Creusé
+
+[b]Music[/b]
+    Thibaud Creusé
+
+[b]External Assets[/b]
+    Input Prompts by Kenny (CC0) [url]https://kenney.nl/assets/input-prompts[/url]
+
+[b]License[/b]
+    CC BY-SA 4.0 for assets
+    CC0 for code"
+script = ExtResource("1_qo0p8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_j6bgo")
+
+[node name="ReturnLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Return"

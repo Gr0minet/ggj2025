@@ -56,7 +56,8 @@ func enter_joined_state() -> void:
 	color_picker.show()
 	rich_text_label.text = "[center]Keep
 [img]res://assets/xbox_button_color_a_outline.png[/img]
-pressed to start[/center]"
+pressed
+to start[/center]"
 	progress_bar_reset()
 
 

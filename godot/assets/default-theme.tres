@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bi022fj8qqi3f"]
+
+[ext_resource type="FontFile" uid="uid://3h307spwr30b" path="res://assets/fonts/crayon_libre/CrayonLibre.ttf" id="1_33skm"]
+
+[resource]
+default_font = ExtResource("1_33skm")
+default_font_size = 24

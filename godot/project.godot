@@ -33,6 +33,10 @@ enabled=PackedStringArray("res://addons/snap_to_grid_button/plugin.cfg")
 
 item=""
 
+[gui]
+
+theme/custom="res://assets/default-theme.tres"
+
 [input]
 
 ui_accept={

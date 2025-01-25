@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_xshr6"]
 [ext_resource type="PackedScene" uid="uid://c5umynsbl4k7j" path="res://menu/player_join.tscn" id="2_67jmx"]
-[ext_resource type="FontFile" uid="uid://dlvgbiw5rw0lo" path="res://assets/Bubblez Graffiti/BubblezGraffiti.ttf" id="2_y4f5j"]
+[ext_resource type="FontFile" uid="uid://dlvgbiw5rw0lo" path="res://assets/fonts/Bubblez Graffiti/BubblezGraffiti.ttf" id="2_y4f5j"]
 [ext_resource type="Texture2D" uid="uid://diat305kkvrd0" path="res://assets/xbox_button_color_y_outline.png" id="3_qqugk"]
 [ext_resource type="Texture2D" uid="uid://ulhgphjey7qq" path="res://assets/xbox_button_color_b_outline.png" id="4_xihb2"]
 [ext_resource type="PackedScene" uid="uid://bb6rnwye04xbh" path="res://menu/credits.tscn" id="5_bcvg8"]

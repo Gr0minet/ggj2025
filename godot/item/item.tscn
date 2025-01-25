@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bl6rqfabx3oyd"]
+[gd_scene load_steps=5 format=3 uid="uid://bl6rqfabx3oyd"]
+
+[ext_resource type="Script" path="res://item/item.gd" id="1_uhc2d"]
 
 [sub_resource type="Animation" id="Animation_n1uwo"]
 length = 0.001
@@ -39,9 +41,10 @@ _data = {
 "move": SubResource("Animation_ge8pr")
 }
 
-[node name="Item" type="CharacterBody3D"]
+[node name="Item" type="CharacterBody3D" groups=["item"]]
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("1_uhc2d")
 
 [node name="Pivot" type="Node3D" parent="."]
 

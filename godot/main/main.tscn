@@ -149,21 +149,25 @@ player_device_id = 1
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.972039, 0)
 collision_layer = 1
 collision_mask = 1
+script = null
 
 [node name="Duck2" parent="Items" instance=ExtResource("7_t2yrm")]
 transform = Transform3D(1.51506, 0, 1.3056, 0, 2, 0, -1.3056, 0, 1.51506, -0.709849, 0.972039, -0.348515)
 collision_layer = 1
 collision_mask = 1
+script = null
 
 [node name="Duck3" parent="Items" instance=ExtResource("7_t2yrm")]
 transform = Transform3D(-0.728649, 0, 1.86254, 0, 2, 0, -1.86254, 0, -0.728649, 1.01296, 0.972039, 0.336058)
 collision_layer = 1
 collision_mask = 1
+script = null
 
 [node name="ToothBrush" parent="Items" instance=ExtResource("8_vqbr5")]
 transform = Transform3D(-8.74228e-08, -8.74228e-08, -2, -2, 3.82137e-15, 8.74228e-08, -7.62305e-22, 2, -8.74228e-08, 0.2, 1.03402, 0.4)
 collision_layer = 1
 collision_mask = 1
+script = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 7.45601e-08, 4.43755e-08, -6.72004e-08, 0.34202, 0.939693, 5.48863e-08, -0.939693, 0.34202, -2.87586e-08, 2.83241, 0.885402)
@@ -197,6 +201,7 @@ theme_override_font_sizes/font_size = 64
 [node name="Countdown" type="Timer" parent="HUD"]
 
 [node name="debugDraw" type="Control" parent="." node_paths=PackedStringArray("debug_targets", "camera")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

@@ -24,6 +24,10 @@ window/size/viewport_height=720
 
 enabled=PackedStringArray("res://addons/snap_to_grid_button/plugin.cfg")
 
+[global_group]
+
+item=""
+
 [input]
 
 ui_accept={

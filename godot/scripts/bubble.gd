@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 
 @export_range(0,4) var player_device_id:int = 0
-@export var acceleration : float = 0.4
+@export var acceleration : float = 0.8
 @export var deceleration : float = 0.2
 @export var max_speed : float = 10.0
 #const JUMP_VELOCITY = 400.5
@@ -52,6 +52,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				_input_dir.y = axis_value if abs(axis_value) >= DEAD_ZONE else 0.0
 
 
+func die() -> void:
+	queue_free.call_deferred()
+
+
 func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> void:
 	if not collision:
 		return
@@ -64,13 +68,15 @@ func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> vo
 	var velocity_to_self:float = 0.3 # bounce back
 	var repulsion_vector:Vector3 = collision.get_normal()
 	
-	if debug:
-		print("%s collides with %s (%s)" % [name, collider.name, collider])
+	print("%s collides with %s (%s)" % [name, collider.name, collider])
+	#print(collision is Item)
 	
 	# walls are not moved
 	if collider is StaticBody3D:
 		velocity_to_collider = 0.0
 		velocity_to_self = 0.9 # not 1 because y a de la perte
+	elif collider.is_in_group("item"):
+		die()
 	
 	if not is_zero_approx(velocity_to_collider):
 		collider.velocity = velocity.bounce(repulsion_vector) * velocity_to_collider * -1

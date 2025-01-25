@@ -23,7 +23,9 @@ func _process(_delta:float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	for debug_target in debug_targets:		
+	for debug_target in debug_targets:
+		if not debug_target:
+			return
 		if draw_flags & 1:
 			# draw motion vector
 			var position:Vector2 = camera.unproject_position(debug_target.position)

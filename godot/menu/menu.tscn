@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpiqhe2x4htta"]
+[gd_scene load_steps=9 format=3 uid="uid://bpiqhe2x4htta"]
 
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_xshr6"]
 [ext_resource type="PackedScene" uid="uid://c5umynsbl4k7j" path="res://menu/player_join.tscn" id="2_67jmx"]
 [ext_resource type="Texture2D" uid="uid://diat305kkvrd0" path="res://assets/xbox_button_color_y_outline.png" id="3_qqugk"]
 [ext_resource type="Texture2D" uid="uid://ulhgphjey7qq" path="res://assets/xbox_button_color_b_outline.png" id="4_xihb2"]
 [ext_resource type="PackedScene" uid="uid://bb6rnwye04xbh" path="res://menu/credits.tscn" id="5_bcvg8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mqjg"]
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="Gradient" id="Gradient_e4pkv"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.614053, 0.555935, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_odukd"]
+gradient = SubResource("Gradient_e4pkv")
+fill = 1
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("player_join_parent")]
 layout_mode = 3
@@ -90,9 +103,23 @@ text = "Credits
 [node name="ExitHBox" type="HBoxContainer" parent="KeysVBox"]
 layout_mode = 2
 
-[node name="ExitTextureRect" type="TextureRect" parent="KeysVBox/ExitHBox"]
+[node name="Control" type="PanelContainer" parent="KeysVBox/ExitHBox"]
+clip_children = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8mqjg")
+
+[node name="ExitTextureRect" type="TextureRect" parent="KeysVBox/ExitHBox/Control"]
 layout_mode = 2
 texture = ExtResource("4_xihb2")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="KeysVBox/ExitHBox/Control"]
+layout_mode = 2
+value = 50.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_odukd")
 
 [node name="ExitLabel" type="Label" parent="KeysVBox/ExitHBox"]
 layout_mode = 2

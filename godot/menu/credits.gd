@@ -9,4 +9,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("exit"):
-		queue_free()
+		hide()

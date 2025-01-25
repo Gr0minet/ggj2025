@@ -17,5 +17,10 @@ func get_and_lock_spawn() -> Vector3:
 	if len(_spawn_available) == 0:
 		return Vector3(-1, -1, -1)
 	
-	return _spawn_available.pop_at(randi_range(0, len(_spawn_available)))
+	var spawn_pos:Variant= _spawn_available.pop_at(randi_range(0, len(_spawn_available)))
+	
+	if spawn_pos == null:
+		return Vector3(-1, -1, -1)
+	
+	return spawn_pos
 	

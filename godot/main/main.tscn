@@ -67,10 +67,11 @@ shader_parameter/caustic_sampler = ExtResource("2_woun1")
 material = SubResource("ShaderMaterial_nyuec")
 size = Vector2(4, 4)
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("players_parent_node")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("players_parent_node", "player_spawns")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
 script = ExtResource("1_bujv1")
 players_parent_node = NodePath("Players")
+player_spawns = NodePath("PlayerSpawns")
 bubble_scene = ExtResource("4_1iwhq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -210,34 +211,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.111501, 0)
 script = ExtResource("11_mx223")
 
 [node name="Spawn1" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23852, 1.20716, -0.606494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23852, 1.14444, -0.606494)
 
 [node name="Spawn2" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134068, 1.20716, -0.606494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134068, 1.14444, -0.606494)
 
 [node name="Spawn3" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4492, 1.20716, -0.606494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4492, 1.14444, -0.606494)
 
 [node name="Spawn4" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4492, 1.20716, 0.0766094)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4492, 1.14444, 0.0766094)
 
 [node name="Spawn5" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30875, 1.20716, 0.574572)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30875, 1.14444, 0.574572)
 
 [node name="Spawn6" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.414968, 1.20716, 0.574572)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.414968, 1.14444, 0.574572)
 
 [node name="Spawn7" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434123, 1.20716, 0.574572)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434123, 1.14444, 0.574572)
 
 [node name="Spawn8" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47474, 1.20716, 0.497963)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47474, 1.14444, 0.497963)
 
 [node name="Spawn9" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.466043, 1.20716, -0.108531)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.466043, 1.14444, -0.108531)
 
 [node name="Spawn10" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421353, 1.20716, 0.140451)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421353, 1.14444, 0.140451)
 
 [connection signal="timeout" from="HUD/Countdown" to="HUD" method="_on_countdown_timeout"]
 

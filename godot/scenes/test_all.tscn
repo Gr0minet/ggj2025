@@ -12,8 +12,7 @@ main_level = NodePath("Main")
 
 [node name="Menu" parent="." instance=ExtResource("1_2cjic")]
 
-[node name="Main" parent="." node_paths=PackedStringArray("players_parent_node") instance=ExtResource("2_nvhr7")]
-players_parent_node = NodePath("PlayerSpawns")
+[node name="Main" parent="." instance=ExtResource("2_nvhr7")]
 
 [node name="RotateCameraAnchor" type="Node3D" parent="." node_paths=PackedStringArray("look_at_target", "camera")]
 script = ExtResource("3_mkfek")

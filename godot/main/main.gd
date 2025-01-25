@@ -1,24 +1,32 @@
 extends Node3D
 
-#@export var camera:Camera3D = null
-@export var players_parent_node:PlayerSpawns = null
+@export var players_parent_node:Node3D = null
+@export var player_spawns:PlayerSpawns = null
 @export var bubble_scene:PackedScene = null
 
 @onready var _hud: HUD = $HUD
 
 
-#func _ready() -> void:
-	## wait 1s before starting, for now
-	#await get_tree().create_timer(5.0).timeout
-	#start_level()
+func _ready() -> void:
+	allow_player_input(false)
 
 func start_level(players:Array[Player]) -> void:
 	_clear_players()
 	_init_players(players)
 	
-	#camera.current = true
+	allow_player_input(false)
+	
+	_hud.timer_over.connect(func():
+		allow_player_input(true)
+		)
+	
 	_hud.start_timer(3)
 
+
+func allow_player_input(allow:bool) -> void:
+	for bubble in players_parent_node.get_children():
+		if bubble is Bubble:
+			bubble.allow_player_input(allow)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("full_screen"):
@@ -40,7 +48,7 @@ func _clear_players() -> void:
 
 func _init_players(players:Array[Player]) -> void:
 	for p in players:
-		var spawn_pos:Vector3 = players_parent_node.get_and_lock_spawn()
+		var spawn_pos:Vector3 = player_spawns.get_and_lock_spawn()
 		
 		var bubble:Bubble = bubble_scene.instantiate()
 		players_parent_node.add_child(bubble)

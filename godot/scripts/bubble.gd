@@ -11,17 +11,14 @@ extends CharacterBody3D
 
 const DEAD_ZONE = 0.5
 
+var allow_input:bool = true
+
 var _input_dir:Vector2 = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta * gravity_scale
-	
-	## Handle jump.
-	#if Input.is_action_just_pressed("jump") and is_on_floor():
-		#print("jump")
-		#velocity.y = JUMP_VELOCITY
+
+	if not allow_input:
+		return
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := (transform.basis * Vector3(_input_dir.x, 0, _input_dir.y)).normalized()
@@ -42,6 +39,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if player_device_id != event.device:
 		return
 	
+	# Inputs are recorded even if allow_input == false
+	# so that when the game start, the input_dir is already set
+	
 	if event is InputEventJoypadMotion:
 		var motion_event: InputEventJoypadMotion = event as InputEventJoypadMotion
 		var axis_value : float = motion_event.axis_value
@@ -55,6 +55,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func die() -> void:
 	queue_free.call_deferred()
 
+func allow_player_input(allow:bool) -> void:
+	allow_input = allow
 
 func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> void:
 	if not collision:

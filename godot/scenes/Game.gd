@@ -3,7 +3,7 @@ extends Node3D
 @onready var main_menu_camera: Camera3D = $RotateCameraAnchor/MainMenuCamera
 @export var menu:Control = null
 @export var main_level:Node3D = null
-@onready var target_camera_position: Marker3D = $Main/TargetCameraPosition
+@onready var target_camera_position: Marker3D = $BathtubLevel/TargetCameraPosition
 @onready var rotate_camera_anchor: Node3D = $RotateCameraAnchor
 
 # Called when the node enters the scene tree for the first time.

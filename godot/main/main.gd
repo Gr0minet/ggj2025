@@ -1,10 +1,17 @@
 extends Node3D
 
+@export var camera:Camera3D = null
 
 @onready var _hud: HUD = $HUD
 
 
 func _ready() -> void:
+	# wait 1s before starting, for now
+	await get_tree().create_timer(5.0).timeout
+	start_level()
+
+func start_level() -> void:
+	camera.current = true
 	_hud.start_timer(3)
 
 

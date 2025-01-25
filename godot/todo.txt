@@ -1,22 +1,9 @@
 # TODO
 
 - Spawn des objets aléatoires ?
-- Mouvement de caméra au lancement de la partie ?
 - Menu pause
-- Menu principal avec joueurs qui peuvent rejoindre
 - Menu fin ?
-- Shader cut eau baignoire
-- Animation bulle qui éclate ?
 - Retirer les ombres des items sur l'eau ?
 - ajouter transparence au spawn du seche cheveux ?
-- Fix bug quand la bubble collide avec un item (il est propulsé)
+- Ajout vfx vent sèche cheveux
 
-
-# Sèche cheveux (v0.2)
-- Spawn sur une ligne aléatoire autour de la baignoire
-- Fade in transparence et petite translation vers la baignoire
-- Petit vfx de vent dans la direction du sèche cheveux
-- Pousse les éléments (joueurs et item) dans la zone d'action
-	- Zone d'action Area2D
-	- Chaque élément dans la zone voit sa vélocité augmenter dans la direction du vent
-	- Force du vent plus forte au centre ?

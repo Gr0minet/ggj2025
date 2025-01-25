@@ -12,12 +12,10 @@ size = Vector3(12.5558, 0.608887, 14.9261)
 
 [node name="Bubble" parent="." instance=ExtResource("1_ychtd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8946, 0)
-gravity_scale = 0.0
 
 [node name="Bubble2" parent="." instance=ExtResource("1_ychtd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8946, -1.79241)
 player_device_id = 1
-gravity_scale = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.774746, 0.632273, 0, -0.632273, 0.774746, 0, 3.54499, 3.37254)

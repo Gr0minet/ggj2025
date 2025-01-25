@@ -1,12 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=22 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
 [ext_resource type="PackedScene" uid="uid://ctsn4jcv5aq27" path="res://assets/BAIGNOIRE.glb" id="2_n8535"]
 [ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://environment/water/textures/caustic_texture.png" id="2_woun1"]
-[ext_resource type="PackedScene" uid="uid://c056xh7ua8mra" path="res://item/cube_flottant.tscn" id="3_xvxn0"]
+[ext_resource type="PackedScene" uid="uid://cpsw08ate1kf0" path="res://assets/FLOTTE.glb" id="3_qnajh"]
 [ext_resource type="PackedScene" uid="uid://byejtqwx88kyu" path="res://scenes/bubble.tscn" id="4_1iwhq"]
 [ext_resource type="Script" path="res://main/hud.gd" id="4_f7kia"]
+[ext_resource type="PackedScene" uid="uid://b2i5bmbjailsa" path="res://item/duck.tscn" id="7_t2yrm"]
+[ext_resource type="PackedScene" uid="uid://de76wbnhfpsty" path="res://item/tooth_brush.tscn" id="8_vqbr5"]
+[ext_resource type="Script" path="res://scripts/debug_draw.gd" id="8_wqv0v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -20,6 +23,26 @@ background_mode = 2
 sky = SubResource("Sky_ajdol")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1b16v"]
+size = Vector3(0.55, 0.35, 0.1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h6l63"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q7dij"]
+seamless = true
+noise = SubResource("FastNoiseLite_h6l63")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6uoci"]
+render_priority = 0
+shader = ExtResource("1_gudu6")
+shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
+shader_parameter/water_depth_color = Color(0.133333, 0.490196, 0.823529, 1)
+shader_parameter/water_edge_distance = 0.02
+shader_parameter/water_depth_distance = 8.0
+shader_parameter/water_texture_scale = 4.0
+shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_q7dij")
+shader_parameter/caustic_sampler = ExtResource("2_woun1")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_imin5"]
 
@@ -42,7 +65,7 @@ shader_parameter/caustic_sampler = ExtResource("2_woun1")
 material = SubResource("ShaderMaterial_nyuec")
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
 script = ExtResource("1_bujv1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -52,25 +75,90 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7x14t")
 
-[node name="BAIGNOIRE" parent="." instance=ExtResource("2_n8535")]
+[node name="Baignoire" type="StaticBody3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="BAIGNOIRE" parent="Baignoire" instance=ExtResource("2_n8535")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.86198e-15, 0.6, -0.55)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86198e-15, 0.6, 0.55)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(0.994045, 0, -0.108971, 0, 1, 0, 0.108971, 0, 0.994045, -0.53907, 0.6, 0.521734)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(0.34284, 9.41916e-09, -0.939394, -2.2646e-09, 1, 9.20037e-09, 0.939394, -1.02691e-09, 0.34284, -0.948925, 0.6, 0.277436)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(-0.286357, 8.1666e-09, -0.958123, -2.2646e-09, 1, 9.20037e-09, 0.958123, 4.80435e-09, -0.286357, -0.961039, 0.6, -0.257596)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(-0.996083, -1.44218e-09, -0.088425, -2.2646e-09, 1, 9.20037e-09, 0.088425, 9.36457e-09, -0.996083, -0.555222, 0.6, -0.52814)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0.546639, 0.6, 0.52965)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(0.302403, 7.55509e-09, 0.95318, -2.91175e-09, 1, -7.00242e-09, -0.95318, -6.57861e-10, 0.302403, 0.945496, 0.6, 0.270404)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(-0.343086, 1.12257e-08, 0.939304, -1.31835e-09, 1, -1.24326e-08, -0.939304, -5.50377e-09, -0.343086, 0.939226, 0.6, -0.257454)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Baignoire"]
+transform = Transform3D(0.996195, 0, -0.0871558, 0, 1, 0, 0.0871558, 0, 0.996195, 0.554715, 0.6, -0.528426)
+shape = SubResource("BoxShape3D_1b16v")
+
+[node name="FLOTTE2" parent="." instance=ExtResource("3_qnajh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.156051, 0)
+
+[node name="FLOTTE" parent="FLOTTE2" index="0"]
+transform = Transform3D(1.04346, 0, 0, 0, 1.04346, 0, 0, 0, 1.04346, 0, 0.539272, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_6uoci")
 
 [node name="Water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
 mesh = SubResource("PlaneMesh_h4pj0")
 
 [node name="Players" type="Node3D" parent="."]
 
 [node name="Bubble" parent="Players" instance=ExtResource("4_1iwhq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.55, 0.15)
-gravity_scale = 0.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 1.01693, 0.15)
+
+[node name="Bubble2" parent="Players" instance=ExtResource("4_1iwhq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.425588, 1.01684, -0.113846)
+player_device_id = 1
 
 [node name="Items" type="Node3D" parent="."]
 
-[node name="Item" parent="Items" instance=ExtResource("3_xvxn0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+[node name="Duck" parent="Items" instance=ExtResource("7_t2yrm")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.972039, 0)
+
+[node name="Duck2" parent="Items" instance=ExtResource("7_t2yrm")]
+transform = Transform3D(1.51506, 0, 1.3056, 0, 2, 0, -1.3056, 0, 1.51506, -0.709849, 0.972039, -0.348515)
+
+[node name="Duck3" parent="Items" instance=ExtResource("7_t2yrm")]
+transform = Transform3D(-0.728649, 0, 1.86254, 0, 2, 0, -1.86254, 0, -0.728649, 1.01296, 0.972039, 0.336058)
+
+[node name="ToothBrush" parent="Items" instance=ExtResource("8_vqbr5")]
+transform = Transform3D(-8.74228e-08, -8.74228e-08, -2, -2, 3.82137e-15, 8.74228e-08, -7.62305e-22, 2, -8.74228e-08, 0.2, 1.03402, 0.4)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 7.45601e-08, 4.43755e-08, -6.72004e-08, 0.34202, 0.939693, 5.48863e-08, -0.939693, 0.34202, -2.87586e-08, 1.4, 0.45)
+transform = Transform3D(1, 7.45601e-08, 4.43755e-08, -6.72004e-08, 0.34202, 0.939693, 5.48863e-08, -0.939693, 0.34202, -2.87586e-08, 2.83241, 0.885402)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -100,4 +188,16 @@ theme_override_font_sizes/font_size = 64
 
 [node name="Countdown" type="Timer" parent="HUD"]
 
+[node name="debugDraw" type="Control" parent="." node_paths=PackedStringArray("debug_targets", "camera")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_wqv0v")
+debug_targets = [NodePath("../Players/Bubble")]
+camera = NodePath("../Camera3D")
+draw_flags = 3
+
 [connection signal="timeout" from="HUD/Countdown" to="HUD" method="_on_countdown_timeout"]
+
+[editable path="FLOTTE2"]

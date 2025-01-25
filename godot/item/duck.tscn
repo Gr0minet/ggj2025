@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2i5bmbjailsa"]
+
+[ext_resource type="PackedScene" uid="uid://bl6rqfabx3oyd" path="res://item/item.tscn" id="1_ybql2"]
+[ext_resource type="PackedScene" uid="uid://bmm24pxko5n3t" path="res://assets/duck.glb" id="2_tc8a2"]
+
+[node name="Duck" instance=ExtResource("1_ybql2")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="duck" parent="Pivot" index="0" instance=ExtResource("2_tc8a2")]

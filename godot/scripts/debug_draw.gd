@@ -23,7 +23,6 @@ func _process(_delta:float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	print(draw_flags)
 	for debug_target in debug_targets:		
 		if draw_flags & 1:
 			# draw motion vector

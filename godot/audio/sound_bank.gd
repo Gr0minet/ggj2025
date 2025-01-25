@@ -1,6 +1,7 @@
 extends Node
 
 @export var main_menu_music:AudioStream = null
+@export var background_perc_music:AudioStream = null
 @export var bounce1:AudioStream = null
 @export var bounce2:AudioStream = null
 @export var plop:AudioStream = null

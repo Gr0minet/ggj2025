@@ -11,7 +11,10 @@ func _ready() -> void:
 	randomize()
 	rotate_camera_anchor.set_rotating(true)
 	menu.request_game_start.connect(_on_request_game_start)
-
+	
+	AudioManager.play_music(SoundBank.main_menu_music)
+	AudioManager.play_music2(SoundBank.background_perc_music)
+	AudioManager.mute_music2(true)
 
 func _on_request_game_start(players:Array[Player]) -> void:
 	main_level.start_level(players)

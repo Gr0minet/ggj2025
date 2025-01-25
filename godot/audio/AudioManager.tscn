@@ -6,3 +6,5 @@
 script = ExtResource("1_1jtql")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]

@@ -11,6 +11,8 @@ func _ready() -> void:
 	allow_player_input(false)
 
 func start_level(players:Array[Player]) -> void:
+	AudioManager.mute_music2(false)
+	
 	_clear_players()
 	_init_players(players)
 	

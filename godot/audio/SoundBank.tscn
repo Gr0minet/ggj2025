@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://vvwry3wxpmfl"]
+[gd_scene load_steps=10 format=3 uid="uid://vvwry3wxpmfl"]
 
 [ext_resource type="Script" path="res://audio/sound_bank.gd" id="1_2pu7o"]
-[ext_resource type="AudioStream" uid="uid://vf4gppdjbynm" path="res://audio/bgm/OSTWIP.mp3" id="2_y8fus"]
+[ext_resource type="AudioStream" uid="uid://c4t0qpb2xq7um" path="res://audio/bgm/LOOP_INSTRUMENTS.mp3" id="2_46s0p"]
 [ext_resource type="AudioStream" uid="uid://bjoyd8vxqphwm" path="res://audio/se/BOUNCE1.mp3" id="3_3is1w"]
+[ext_resource type="AudioStream" uid="uid://cpcxelomeo4rs" path="res://audio/bgm/LOOP_TAMBOURS.mp3" id="3_8w34l"]
 [ext_resource type="AudioStream" uid="uid://bx3s6voicqio3" path="res://audio/se/BOUNCE2.mp3" id="4_x7gbx"]
 [ext_resource type="AudioStream" uid="uid://co1kg2ypij344" path="res://audio/se/PLOP.mp3" id="5_dcf45"]
 [ext_resource type="AudioStream" uid="uid://bdq2et5ca3q" path="res://audio/se/PLOPP.mp3" id="6_7okdq"]
@@ -11,7 +12,8 @@
 
 [node name="SoundBank" type="Node"]
 script = ExtResource("1_2pu7o")
-main_menu_music = ExtResource("2_y8fus")
+main_menu_music = ExtResource("2_46s0p")
+background_perc_music = ExtResource("3_8w34l")
 bounce1 = ExtResource("3_3is1w")
 bounce2 = ExtResource("4_x7gbx")
 plop = ExtResource("5_dcf45")

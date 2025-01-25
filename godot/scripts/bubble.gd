@@ -17,6 +17,11 @@ var allow_input:bool = true
 
 var _input_dir:Vector2 = Vector2.ZERO
 
+var _bounce_sounds:Array[AudioStream] = [
+	SoundBank.bounce1,
+	SoundBank.bounce2,
+]
+
 func _ready() -> void:
 	if mesh_instance:
 		_mesh_material = mesh_instance.get_active_material(0).duplicate()
@@ -68,6 +73,8 @@ func allow_player_input(allow:bool) -> void:
 func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> void:
 	if not collision:
 		return
+	
+	AudioManager.play_sound_effect(_bounce_sounds.pick_random())
 	
 	if velocity.length() < 0.05:
 		return

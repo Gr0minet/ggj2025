@@ -12,6 +12,7 @@ var BGM_bus_index = AudioServer.get_bus_index(BGM_BUS)
 var SE_bus_index = AudioServer.get_bus_index(SE_BUS)
 
 @onready var _music_player : AudioStreamPlayer = $MusicPlayer
+@onready var _music_player2 : AudioStreamPlayer = $MusicPlayer2
 
 var volume_before_pause:float = 0
 
@@ -23,25 +24,38 @@ func _ready():
 	# Events.unpause_game.connect(_on_game_unpaused)
 	
 	await get_tree().create_timer(0.1).timeout
+
+############## HARDCODE ############
+# Bit of hardcode to handle 2 background music at the same time
+func play_music2(stream:AudioStream, fade_in_time:float=0.25) -> void:
+	play_music(stream, _music_player2, fade_in_time)
+
+func mute_music2(mute:bool) -> void:
+	if mute:
+		_music_player2.volume_db = -1000
+	else:
+		_music_player.volume_db = linear_to_db(1)
+######################
+
+func play_music(stream:AudioStream, music_player:AudioStreamPlayer=null, fade_in_time:float=0.25) -> void:
+	if music_player == null:
+		music_player = _music_player
 	
-
-
-func play_music(stream:AudioStream, fade_in_time:float=0.25) -> void:
 	# If the same music is already playing, don't do anything
-	if _music_player.stream == stream:
+	if music_player.stream == stream:
 		return
 
-	if _music_player.playing and not _fading:
+	if music_player.playing and not _fading:
 		await fade_out_music(0.5)
-	elif _music_player.playing and _fading:
+	elif music_player.playing and _fading:
 		_tween.kill()
 		_fading = false
-	_music_player.stream = stream
-	_music_player.volume_db = AudioServer.get_bus_volume_db(BGM_bus_index) - 100
-	_music_player.play()
+	music_player.stream = stream
+	music_player.volume_db = AudioServer.get_bus_volume_db(BGM_bus_index) - 100
+	music_player.play()
 	_tween = get_tree().create_tween()
 	_fading = true
-	_tween.tween_property(_music_player, "volume_db", AudioServer.get_bus_volume_db(BGM_bus_index), fade_in_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_tween.tween_property(music_player, "volume_db", AudioServer.get_bus_volume_db(BGM_bus_index), fade_in_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await _tween.finished
 	_fading = false
 

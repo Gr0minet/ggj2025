@@ -43,3 +43,4 @@ func _init_players(players:Array[Player]) -> void:
 		bubble.global_position = spawn_pos
 		print("set color %s" % p.color)
 		bubble.set_color_tint(p.color)
+		bubble.player_device_id = p.id

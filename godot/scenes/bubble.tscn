@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" path="res://scripts/bubble.gd" id="1_pvsgq"]
 [ext_resource type="PackedScene" uid="uid://drckcvtqv1f3h" path="res://assets/BULLESATUREE.glb" id="2_xrabc"]
-[ext_resource type="Texture2D" uid="uid://ia0wh0n4wymo" path="res://assets/BULLESATUREE_COULEUR2.png" id="3_c24xp"]
+[ext_resource type="Texture2D" uid="uid://cf8dibxs6hnwa" path="res://assets/BULLESATUREE_NOIRBLANC.png" id="3_57kie"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wys75"]
-radius = 0.125
+radius = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efsfc"]
 resource_name = "Material"
 transparency = 4
 cull_mode = 2
 albedo_color = Color(1, 1, 1, 0.627451)
-albedo_texture = ExtResource("3_c24xp")
+albedo_texture = ExtResource("3_57kie")
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mdhtv"]

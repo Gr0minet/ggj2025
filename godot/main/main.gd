@@ -5,10 +5,10 @@ extends Node3D
 @onready var _hud: HUD = $HUD
 
 
-func _ready() -> void:
-	# wait 1s before starting, for now
-	await get_tree().create_timer(5.0).timeout
-	start_level()
+#func _ready() -> void:
+	## wait 1s before starting, for now
+	#await get_tree().create_timer(5.0).timeout
+	#start_level()
 
 func start_level() -> void:
 	camera.current = true

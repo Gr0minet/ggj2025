@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsthm17tf7jl8"]
+[gd_scene load_steps=5 format=3 uid="uid://bsthm17tf7jl8"]
 
 [ext_resource type="PackedScene" uid="uid://bpiqhe2x4htta" path="res://menu/menu.tscn" id="1_2cjic"]
+[ext_resource type="Script" path="res://scenes/Game.gd" id="1_6tww2"]
 [ext_resource type="PackedScene" uid="uid://4el3kq51boe8" path="res://main/main.tscn" id="2_nvhr7"]
 [ext_resource type="Script" path="res://scenes/camera_rotate_around.gd" id="3_mkfek"]
 
-[node name="TestAll" type="Node3D"]
+[node name="TestAll" type="Node3D" node_paths=PackedStringArray("menu", "main_level")]
+script = ExtResource("1_6tww2")
+menu = NodePath("Menu")
+main_level = NodePath("Main")
 
 [node name="Menu" parent="." instance=ExtResource("1_2cjic")]
 

@@ -10,6 +10,9 @@ var current_round = 0
 var players: Array[Player]
 @onready var scores_label_hbox = $VBoxContainer/ScoresLabelVBox
 @onready var rounds_label = $VBoxContainer/RoundsLabel
+@onready var exit_hbox = $MarginContainer/KeysVBox/ExitHBox
+@onready var next_round_hbox = $MarginContainer/KeysVBox/NextRoundHBox
+var over = false
 
 
 func sort_player(a: Player, b: Player) -> bool:
@@ -17,6 +20,7 @@ func sort_player(a: Player, b: Player) -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func init() -> void:
+	exit_hbox.hide()
 	scores = {}
 	players.sort_custom(sort_player)
 	for player in players:
@@ -49,9 +53,27 @@ func bubble_wins(bubble_id: int):
 	update_scores_label()
 
 
+func win_screen():
+	exit_hbox.show()
+	next_round_hbox.hide()
+	over = true
+	var winner = -1
+	var max_score = 0
+	for player in players:
+		var score = scores[player.id]
+		if score > max_score:
+			max_score = score
+			winner = player.id
+	rounds_label.text = "You are a master of chaos, J%d, you won!" % [winner + 1]
+	update_scores_label()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
 		return
-	if event.is_action_pressed("join_game"):
+	if event.is_action_pressed("join_game") and not over:
 		request_next_round.emit()
+	if event.is_action_pressed("exit") and over:
+		get_viewport().set_input_as_handled()
+		Events.return_to_main_menu.emit()
+		queue_free()

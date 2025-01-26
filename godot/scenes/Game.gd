@@ -62,15 +62,16 @@ func _on_request_game_start(players_arr:Array[Player], match_length: int) -> voi
 
 func _on_request_next_round() -> void:
 	scores_node.hide()
-	if scores_node.scores.values().max() == scores_node.game_length:
-		print("WIN")
-	else:
-		start_round()
+	start_round()
 
 
 func _on_bathtub_level_bubble_won(bubble_id: int) -> void:
 	scores_node.bubble_wins(bubble_id)
-	scores_node.show()
+	if scores_node.scores.values().max() == scores_node.game_length:
+		scores_node.win_screen()
+		scores_node.show()
+	else:
+		scores_node.show()
 	# print("You won" + str(bubble_id))
 	# start_round(players)
 

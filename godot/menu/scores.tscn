@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmdvdtpe6mjaj"]
+[gd_scene load_steps=5 format=3 uid="uid://bmdvdtpe6mjaj"]
 
 [ext_resource type="Script" path="res://menu/scores.gd" id="1_squc1"]
+[ext_resource type="Texture2D" uid="uid://bvgvbm00yrqox" path="res://assets/xbox_button_color_a_outline.png" id="2_raf1i"]
+[ext_resource type="Texture2D" uid="uid://ulhgphjey7qq" path="res://assets/xbox_button_color_b_outline.png" id="3_23oeq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avkpo"]
 bg_color = Color(0.6, 0.6, 0.6, 0.490196)
@@ -36,3 +38,37 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 16
 alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
+[node name="KeysVBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="NextRoundHBox" type="HBoxContainer" parent="MarginContainer/KeysVBox"]
+layout_mode = 2
+
+[node name="NextRoundTextureRect" type="TextureRect" parent="MarginContainer/KeysVBox/NextRoundHBox"]
+layout_mode = 2
+texture = ExtResource("2_raf1i")
+
+[node name="NextRoundLabel" type="Label" parent="MarginContainer/KeysVBox/NextRoundHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Next Round"
+
+[node name="ExitHBox" type="HBoxContainer" parent="MarginContainer/KeysVBox"]
+layout_mode = 2
+
+[node name="ExitTextureRect" type="TextureRect" parent="MarginContainer/KeysVBox/ExitHBox"]
+layout_mode = 2
+texture = ExtResource("3_23oeq")
+
+[node name="ExitLabel" type="Label" parent="MarginContainer/KeysVBox/ExitHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Exit to Main Menu"

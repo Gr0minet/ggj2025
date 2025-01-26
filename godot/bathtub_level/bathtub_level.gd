@@ -58,6 +58,7 @@ func _clear_players() -> void:
 
 func _init_players(players:Array[Player]) -> void:
 	min_alive = 1 if players.size() > 1 else 0
+	alive_bubbles.clear()
 	for p in players:
 		alive_bubbles.append(p.id)
 		var spawn_pos:Vector3 = player_spawns.get_and_lock_spawn()
@@ -74,7 +75,6 @@ func _init_players(players:Array[Player]) -> void:
 
 func _on_bubble_died(bubble_id: int) -> void:
 	var index = alive_bubbles.find(bubble_id)
-	print(alive_bubbles, index)
 	if index == -1:
 		return
 	alive_bubbles.remove_at(index)

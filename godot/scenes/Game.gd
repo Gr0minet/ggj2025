@@ -11,6 +11,7 @@ extends Node3D
 @export var scores_scene: PackedScene = null
 var scores_node: Control
 var players: Array[Player]
+var initial_menu_camera_transform: Transform3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +24,7 @@ func _ready() -> void:
 	AudioManager.mute_music2(true)
 	
 	Events.return_to_main_menu.connect(_on_return_to_main_menu)
+	initial_menu_camera_transform = main_menu_camera.transform
 
 func init_main_menu() -> void:
 	if menu == null and menu_scene:
@@ -34,6 +36,8 @@ func init_main_menu() -> void:
 func _on_return_to_main_menu() -> void:
 	init_main_menu()
 	main_level.end_level()
+	var tween: Tween = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(main_menu_camera, "transform", initial_menu_camera_transform, 1.0)
 
 func reset() -> void:
 	players = []

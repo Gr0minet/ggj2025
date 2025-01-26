@@ -8,7 +8,13 @@ extends Node3D
 
 @export var menu_scene:PackedScene = null
 
+@export var scores_scene: PackedScene = null
+var scores_node: Control
+var players: Array[Player]
+
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	reset()
 	randomize()
 	
 	init_main_menu()
@@ -29,11 +35,39 @@ func _on_return_to_main_menu() -> void:
 	init_main_menu()
 	main_level.end_level()
 
-func _on_request_game_start(players:Array[Player]) -> void:
+func reset() -> void:
+	players = []
+	scores_node = null
+
+func start_round() -> void:
 	main_level.start_level(players)
-	menu.queue_free()
 	rotate_camera_anchor.set_rotating(false)
 	var tween: Tween = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(rotate_camera_anchor, "rotation", Vector3.ZERO, 1.0)
 	tween.tween_property(main_menu_camera, "transform", target_camera_position.transform, 1.0)
-	
+
+
+func _on_request_game_start(players_arr:Array[Player], match_length: int) -> void:
+	players = players_arr
+	menu.queue_free()
+	start_round()
+	scores_node = scores_scene.instantiate()
+	add_child(scores_node)
+	scores_node.players = players.duplicate(true)
+	scores_node.game_length = match_length
+	scores_node.init()
+	scores_node.hide()
+	scores_node.request_next_round.connect(_on_request_next_round)
+
+
+func _on_request_next_round() -> void:
+	scores_node.hide()
+	# if scores_node.scores.values().max() == 
+	start_round()
+
+
+func _on_bathtub_level_bubble_won(bubble_id: int) -> void:
+	scores_node.bubble_wins(bubble_id)
+	scores_node.show()
+	# print("You won" + str(bubble_id))
+	# start_round(players)

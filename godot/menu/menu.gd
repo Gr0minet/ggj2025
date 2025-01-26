@@ -49,7 +49,7 @@ func _on_request_game_start_by(player: Player) -> void:
 		if child.current_state != child.State.WAITING and child.player_id != player.id:
 			players.append(child.player)
 			child.enter_launched_state()
-	request_game_start.emit(players)
+	request_game_start.emit(players, LENGTHS[current_length_index])
 
 
 func _swap_fullscreen_mode():

@@ -2,6 +2,8 @@ class_name Bubble
 extends CharacterBody3D
 
 
+signal bubble_died(player_device_id: int)
+
 @export_range(0,4) var player_device_id:int = 0
 @export var acceleration : float = 1.6
 @export var deceleration : float = 0.4
@@ -87,6 +89,8 @@ func die() -> void:
 	bullesaturee.visible = false
 	await cpu_particles_3d.finished
 	queue_free.call_deferred()
+	bubble_died.emit(player_device_id)
+	
 
 func allow_player_input(allow:bool) -> void:
 	allow_input = allow

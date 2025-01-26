@@ -1,5 +1,7 @@
 extends Node3D
 
+signal bubble_won(bubble_id: int)
+
 @export var seche_cheveux_min_respawn_time: float = 0.0
 @export var seche_cheveux_max_respawn_time: float = 1.0
 @export var players_parent_node:Node3D = null
@@ -13,6 +15,9 @@ var game_started:bool = false
 @onready var _flotte: Node3D = $FLOTTE2
 @onready var _seche_cheveux_respawn_timer: Timer = $SecheCheveuxRespawnTimer
 @onready var _hud: HUD = $HUD
+
+var alive_bubbles: Array[int] = []
+var min_alive: int = 0
 
 
 func _ready() -> void:
@@ -52,16 +57,29 @@ func _clear_players() -> void:
 		n.queue_free() 
 
 func _init_players(players:Array[Player]) -> void:
+	min_alive = 1 if players.size() > 1 else 0
 	for p in players:
+		alive_bubbles.append(p.id)
 		var spawn_pos:Vector3 = player_spawns.get_and_lock_spawn()
 		
 		var bubble:Bubble = bubble_scene.instantiate()
+		bubble.bubble_died.connect(_on_bubble_died)
 		players_parent_node.add_child(bubble)
 		bubble.global_position = spawn_pos
 		print("set color %s" % p.color)
 		bubble.set_color_tint(p.color)
 		bubble.player_device_id = p.id
 	_set_seche_cheveux_respawn_timer()
+
+
+func _on_bubble_died(bubble_id: int) -> void:
+	var index = alive_bubbles.find(bubble_id)
+	print(alive_bubbles, index)
+	if index == -1:
+		return
+	alive_bubbles.remove_at(index)
+	if alive_bubbles.size() <= min_alive:
+		bubble_won.emit(alive_bubbles[0] if alive_bubbles.size() > 0 else -1)
 
 
 func _spawn_seche_cheveux() -> void:

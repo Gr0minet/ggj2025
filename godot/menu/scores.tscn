@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmdvdtpe6mjaj"]
+
+[ext_resource type="Script" path="res://menu/scores.gd" id="1_squc1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avkpo"]
+bg_color = Color(0.6, 0.6, 0.6, 0.490196)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_avkpo")
+script = ExtResource("1_squc1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="RoundsLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ScoresLabelVBox" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1

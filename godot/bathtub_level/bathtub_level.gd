@@ -77,6 +77,7 @@ func _clear_seche_cheveux() -> void:
 		n.queue_free() 
 
 func _init_players(players:Array[Player]) -> void:
+	player_spawns.reset_spawns()
 	min_alive = 1 if players.size() > 1 else 0
 	alive_bubbles.clear()
 	for p in players:

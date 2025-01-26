@@ -66,6 +66,7 @@ func _on_request_next_round() -> void:
 
 
 func _on_bathtub_level_bubble_won(bubble_id: int) -> void:
+	main_level.end_level()
 	scores_node.bubble_wins(bubble_id)
 	if scores_node.scores.values().max() == scores_node.game_length:
 		scores_node.win_screen()

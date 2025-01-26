@@ -14,8 +14,6 @@ main_level = NodePath("BathtubLevel")
 menu_scene = ExtResource("2_7kotp")
 scores_scene = ExtResource("2_bmbhu")
 
-[node name="Menu" parent="." instance=ExtResource("2_7kotp")]
-
 [node name="BathtubLevel" parent="." instance=ExtResource("3_3m3yt")]
 
 [node name="RotateCameraAnchor" type="Node3D" parent="." node_paths=PackedStringArray("look_at_target", "camera")]
@@ -30,5 +28,7 @@ current = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_dal88")]
 visible = false
+
+[node name="Menu" parent="." instance=ExtResource("2_7kotp")]
 
 [connection signal="bubble_won" from="BathtubLevel" to="." method="_on_bathtub_level_bubble_won"]

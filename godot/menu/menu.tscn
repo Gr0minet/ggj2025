@@ -85,52 +85,55 @@ player_id = 2
 layout_mode = 2
 player_id = 3
 
-[node name="KeysVBox" type="VBoxContainer" parent="."]
+[node name="KeysMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -160.0
-offset_top = 32.0
-offset_right = -37.0
-offset_bottom = 164.0
+offset_left = -186.0
+offset_bottom = 148.0
 grow_horizontal = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
 
-[node name="CreditsHBox" type="HBoxContainer" parent="KeysVBox"]
+[node name="KeysVBox" type="VBoxContainer" parent="KeysMarginContainer"]
 layout_mode = 2
 
-[node name="CreditsTextureRect" type="TextureRect" parent="KeysVBox/CreditsHBox"]
+[node name="CreditsHBox" type="HBoxContainer" parent="KeysMarginContainer/KeysVBox"]
+layout_mode = 2
+
+[node name="CreditsTextureRect" type="TextureRect" parent="KeysMarginContainer/KeysVBox/CreditsHBox"]
 layout_mode = 2
 texture = ExtResource("3_qqugk")
 
-[node name="CreditsLabel" type="Label" parent="KeysVBox/CreditsHBox"]
+[node name="CreditsLabel" type="Label" parent="KeysMarginContainer/KeysVBox/CreditsHBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Credits
 "
 
-[node name="ExitHBox" type="HBoxContainer" parent="KeysVBox"]
+[node name="ExitHBox" type="HBoxContainer" parent="KeysMarginContainer/KeysVBox"]
 layout_mode = 2
 
-[node name="Control" type="PanelContainer" parent="KeysVBox/ExitHBox"]
+[node name="Control" type="PanelContainer" parent="KeysMarginContainer/KeysVBox/ExitHBox"]
 clip_children = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8mqjg")
 
-[node name="ExitTextureRect" type="TextureRect" parent="KeysVBox/ExitHBox/Control"]
+[node name="ExitTextureRect" type="TextureRect" parent="KeysMarginContainer/KeysVBox/ExitHBox/Control"]
 layout_mode = 2
 texture = ExtResource("4_xihb2")
 
-[node name="ExitProgressBar" type="TextureProgressBar" parent="KeysVBox/ExitHBox/Control"]
+[node name="ExitProgressBar" type="TextureProgressBar" parent="KeysMarginContainer/KeysVBox/ExitHBox/Control"]
 layout_mode = 2
 step = 0.0
 fill_mode = 5
 nine_patch_stretch = true
 texture_progress = SubResource("GradientTexture2D_odukd")
 
-[node name="ExitLabel" type="Label" parent="KeysVBox/ExitHBox"]
+[node name="ExitLabel" type="Label" parent="KeysMarginContainer/KeysVBox/ExitHBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Exit"

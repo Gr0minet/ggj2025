@@ -3,7 +3,7 @@ extends Control
 signal request_game_start(players: Array[Player], match_length: int)
 
 @export var player_join_parent: Control = null
-@onready var exit_progress_bar = $KeysVBox/ExitHBox/Control/ExitProgressBar
+@onready var exit_progress_bar = $KeysMarginContainer/KeysVBox/ExitHBox/Control/ExitProgressBar
 @onready var match_settings_vbox = $MarginContainer/MatchSettingsVBox
 
 var match_length_scene = preload("res://menu/match_length_panel_container.tscn")

@@ -118,7 +118,7 @@ shader_parameter/water_texture_scale = 4.0
 shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_q7dij")
 shader_parameter/caustic_sampler = ExtResource("2_woun1")
 
-[node name="BathtubLevel" type="Node3D" node_paths=PackedStringArray("players_parent_node", "player_spawns")]
+[node name="BathtubLevel" type="Node3D" node_paths=PackedStringArray("players_parent_node", "player_spawns", "items_parent_node", "seche_cheveux_parent_node")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
 script = ExtResource("1_bujv1")
 seche_cheveux_min_respawn_time = 3.0
@@ -127,6 +127,8 @@ players_parent_node = NodePath("Players")
 player_spawns = NodePath("PlayerSpawns")
 bubble_scene = ExtResource("4_1iwhq")
 seche_cheveux_scene = ExtResource("3_ji4pn")
+items_parent_node = NodePath("Items")
+seche_cheveux_parent_node = NodePath("SecheCheveuxParents")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -359,6 +361,8 @@ texture = ExtResource("23_j44pb")
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Dash"
+
+[node name="SecheCheveuxParents" type="Node3D" parent="."]
 
 [connection signal="timeout" from="HUD/Countdown" to="HUD" method="_on_countdown_timeout"]
 [connection signal="timeout" from="SecheCheveuxRespawnTimer" to="." method="_on_seche_cheveux_respawn_timer_timeout"]

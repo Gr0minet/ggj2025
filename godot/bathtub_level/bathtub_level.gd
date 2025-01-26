@@ -8,6 +8,8 @@ signal bubble_won(bubble_id: int)
 @export var player_spawns:PlayerSpawns = null
 @export var bubble_scene:PackedScene = null
 @export var seche_cheveux_scene: PackedScene = null
+@export var items_parent_node:Node3D = null
+@export var seche_cheveux_parent_node:Node3D = null
 
 var game_started:bool = false
 
@@ -22,12 +24,15 @@ var min_alive: int = 0
 
 func _ready() -> void:
 	allow_player_input(false)
+	_save_items_positions()
 
 func start_level(players:Array[Player]) -> void:
 	game_started = true
 	AudioManager.mute_music2(false)
 	
+	_clear_seche_cheveux()
 	_clear_players()
+	_reset_items_positions()
 	_init_players(players)
 	
 	allow_player_input(false)
@@ -39,7 +44,6 @@ func start_level(players:Array[Player]) -> void:
 	
 	_hud.start_timer(3)
 	
-
 func end_level() -> void:
 	_hud.interrupt_timer()
 	game_started = false
@@ -52,10 +56,24 @@ func allow_player_input(allow:bool) -> void:
 		if bubble is Bubble:
 			bubble.allow_player_input(allow)
 
+func _save_items_positions() -> void:
+	for n in items_parent_node.get_children():
+		var item:Item = n as Item
+		item.set_initial_position_to_current_position()
+
+func _reset_items_positions() -> void:
+	for n in items_parent_node.get_children():
+		var item:Item = n as Item
+		item.reset_position_to_initial_position()
 
 func _clear_players() -> void:
 	for n in players_parent_node.get_children():
 		players_parent_node.remove_child(n)
+		n.queue_free() 
+
+func _clear_seche_cheveux() -> void:
+	for n in seche_cheveux_parent_node.get_children():
+		seche_cheveux_parent_node.remove_child(n)
 		n.queue_free() 
 
 func _init_players(players:Array[Player]) -> void:
@@ -88,13 +106,17 @@ func _spawn_seche_cheveux() -> void:
 	var seche_cheveux_spawn: Marker3D = seche_cheveux_spawns[randi_range(0, len(seche_cheveux_spawns) - 1)]
 	var seche_cheveux: SecheCheveux = seche_cheveux_scene.instantiate()
 	seche_cheveux.transform = seche_cheveux_spawn.global_transform
-	add_child(seche_cheveux)
+	seche_cheveux_parent_node.add_child(seche_cheveux)
 	seche_cheveux.set_wind_position_to_water_level(_flotte.global_position.y)
 	seche_cheveux.tree_exited.connect(_on_seche_cheveux_exiting)
 
 
 func _on_seche_cheveux_exiting() -> void:
-	_set_seche_cheveux_respawn_timer()
+	# only queue for respawn another seche cheveux when game has started
+	if game_started:
+		_set_seche_cheveux_respawn_timer()
+	else:
+		_seche_cheveux_respawn_timer.stop()
 
 
 func _set_seche_cheveux_respawn_timer() -> void:

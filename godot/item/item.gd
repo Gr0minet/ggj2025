@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var deceleration : float = 0.2
 @export var max_speed : float = 10.0
 
+var _initial_position:Vector3 = Vector3.ZERO
 
 func _physics_process(delta: float) -> void:
 	if velocity:
@@ -15,6 +16,12 @@ func _physics_process(delta: float) -> void:
 	var collision: KinematicCollision3D = move_and_collide(velocity * delta)
 	_handle_collision(collision)
 
+func set_initial_position_to_current_position() -> void:
+	_initial_position = global_position
+
+func reset_position_to_initial_position() -> void:
+	global_position = _initial_position
+	velocity = Vector3.ZERO
 
 func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> void:
 	if not collision:

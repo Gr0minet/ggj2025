@@ -44,7 +44,7 @@ func update_scores_label():
 		label.add_theme_constant_override("outline_size", 2)
 		label.add_theme_font_size_override("font_size", 48)
 		var score = scores[player.id]
-		label.text = "J%d's score: %d point%s" % [player.id + 1, score, "" if score <= 1 else "s"]
+		label.text = "P%d's score: %d point%s" % [player.id + 1, score, "" if score <= 1 else "s"]
 		scores_label_hbox.add_child(label)
 
 
@@ -67,7 +67,7 @@ func win_screen():
 		if score > max_score:
 			max_score = score
 			winner = player.id
-	rounds_label.text = "You are a master of chaos, J%d, you won!" % [winner + 1]
+	rounds_label.text = "You are a master of chaos, P%d, you won!" % [winner + 1]
 	update_scores_label()
 
 

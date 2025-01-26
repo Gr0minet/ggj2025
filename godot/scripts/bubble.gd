@@ -13,7 +13,6 @@ signal bubble_died(player_device_id: int)
 
 @onready var cpu_particles_3d: CPUParticles3D = $CPUParticles3D
 @onready var bullesaturee: Node3D = $BULLESATUREE
-#@onready var label_3d: Label3D = $CanvasLayer/Label3D
 @onready var label_3d: Label3D = $Label3D
 
 # Material and color related variables
@@ -89,6 +88,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func die() -> void:
+	label_3d.visible = false
 	cpu_particles_3d.emitting = true
 	bullesaturee.visible = false
 	await cpu_particles_3d.finished

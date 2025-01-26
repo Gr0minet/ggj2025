@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=35 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://bathtub_level/bathtub_level.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
@@ -20,12 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://jecmxb77jehc" path="res://environment/carpet.glb" id="18_hs7mu"]
 [ext_resource type="PackedScene" uid="uid://c6q6xv6xvweo6" path="res://environment/furniture.glb" id="19_j2k1o"]
 [ext_resource type="PackedScene" uid="uid://otot7s0garmu" path="res://environment/toothbrush.glb" id="21_iadyx"]
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://kbfsh2t78o44" path="res://assets/xbox_stick_l.png" id="22_6vj23"]
 [ext_resource type="Texture2D" uid="uid://d01clc8kv8mel" path="res://assets/xbox_rb_outline.png" id="23_j44pb"]
-=======
 [ext_resource type="PackedScene" uid="uid://bqfunexf8wtnk" path="res://environment/plant/plant.tscn" id="22_mn8di"]
->>>>>>> 58f09c2 (Ajout animation plante)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

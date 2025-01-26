@@ -36,7 +36,6 @@ func _ready() -> void:
 	if mesh_instance:
 		_mesh_material = mesh_instance.get_active_material(0).duplicate()
 		mesh_instance.set_surface_override_material(0, _mesh_material)
-	label_3d.text = "Player " + str(player_device_id + 1)
 
 func _physics_process(delta: float) -> void:
 

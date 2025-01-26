@@ -20,13 +20,15 @@ func sort_player(a: Player, b: Player) -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func init() -> void:
-	if game_length > 0:
+	if players.size() > 1 and game_length > 0:
 		exit_hbox.hide()
 	scores = {}
 	players.sort_custom(sort_player)
 	for player in players:
 		scores[player.id] = 0
-	if game_length > 0:
+	if players.size() <= 1:
+		rounds_label.text = "Solo mode, bubble on!"
+	elif game_length > 0:
 		rounds_label.text = "First to " + str(game_length) + " wins it all!"
 	else:
 		rounds_label.text = "No score limit, bubble on!"
@@ -74,7 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("join_game") and not over:
 		request_next_round.emit()
-	if event.is_action_pressed("exit") and (over or game_length <= 0):
+	if event.is_action_pressed("exit") and (over or game_length <= 0 or players.size() <= 1):
 		get_viewport().set_input_as_handled()
 		Events.return_to_main_menu.emit()
 		queue_free()

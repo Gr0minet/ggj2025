@@ -1,14 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=33 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://bathtub_level/bathtub_level.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
 [ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://environment/water/textures/caustic_texture.png" id="2_woun1"]
-[ext_resource type="PackedScene" uid="uid://b5h2nmyraqa6q" path="res://environment/baignoire/BAIGNOIRE_SMOOTH.glb" id="3_4tryq"]
 [ext_resource type="PackedScene" uid="uid://rij5ucplv7na" path="res://seche_cheveux/seche_cheveux.tscn" id="3_ji4pn"]
 [ext_resource type="PackedScene" uid="uid://cpsw08ate1kf0" path="res://assets/FLOTTE.glb" id="3_qnajh"]
 [ext_resource type="PackedScene" uid="uid://byejtqwx88kyu" path="res://scenes/bubble.tscn" id="4_1iwhq"]
 [ext_resource type="Script" path="res://bathtub_level/hud.gd" id="4_f7kia"]
 [ext_resource type="Texture2D" uid="uid://d2mghrpwtd852" path="res://environment/sol/floor_Tiles029_4K_Color.jpg" id="4_vyspa"]
+[ext_resource type="PackedScene" uid="uid://30y2gcn3thde" path="res://environment/baignoire/baignoire.tscn" id="5_2xuvl"]
 [ext_resource type="PackedScene" uid="uid://b2i5bmbjailsa" path="res://item/duck.tscn" id="7_t2yrm"]
 [ext_resource type="Script" path="res://scripts/debug_draw.gd" id="8_wqv0v"]
 [ext_resource type="PackedScene" uid="uid://bvjeme52fg8uo" path="res://item/mascotte.tscn" id="9_gxufp"]
@@ -21,8 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://c6q6xv6xvweo6" path="res://environment/furniture.glb" id="19_j2k1o"]
 [ext_resource type="PackedScene" uid="uid://otot7s0garmu" path="res://environment/toothbrush.glb" id="21_iadyx"]
 [ext_resource type="Texture2D" uid="uid://kbfsh2t78o44" path="res://assets/xbox_stick_l.png" id="22_6vj23"]
-[ext_resource type="Texture2D" uid="uid://d01clc8kv8mel" path="res://assets/xbox_rb_outline.png" id="23_j44pb"]
 [ext_resource type="PackedScene" uid="uid://bqfunexf8wtnk" path="res://environment/plant/plant.tscn" id="22_mn8di"]
+[ext_resource type="Texture2D" uid="uid://d01clc8kv8mel" path="res://assets/xbox_rb_outline.png" id="23_j44pb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -101,9 +101,6 @@ shader_parameter/texture_albedo = ExtResource("4_vyspa")
 material = SubResource("ShaderMaterial_gwahh")
 size = Vector2(10, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1b16v"]
-size = Vector3(0.55, 0.35, 0.1)
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_h6l63"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q7dij"]
@@ -141,52 +138,7 @@ environment = SubResource("Environment_7x14t")
 [node name="Sol" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_e2m5y")
 
-[node name="Baignoire" type="StaticBody3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-collision_layer = 2
-collision_mask = 0
-
-[node name="BAIGNOIRE_SMOOTH2" parent="Baignoire" instance=ExtResource("3_4tryq")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.86198e-15, 0.6, -0.55)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86198e-15, 0.6, 0.55)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(0.994045, 0, -0.108971, 0, 1, 0, 0.108971, 0, 0.994045, -0.53907, 0.6, 0.521734)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(0.34284, 9.41916e-09, -0.939394, -2.2646e-09, 1, 9.20037e-09, 0.939394, -1.02691e-09, 0.34284, -0.948925, 0.6, 0.277436)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(-0.286357, 8.1666e-09, -0.958123, -2.2646e-09, 1, 9.20037e-09, 0.958123, 4.80435e-09, -0.286357, -0.961039, 0.6, -0.257596)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D10" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(-0.996083, -1.44218e-09, -0.088425, -2.2646e-09, 1, 9.20037e-09, 0.088425, 9.36457e-09, -0.996083, -0.555222, 0.6, -0.52814)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(0.991507, 0, 0.130059, 0, 1, 0, -0.130059, 0, 0.991507, 0.546639, 0.6, 0.52965)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(0.302403, 7.55509e-09, 0.95318, -2.91175e-09, 1, -7.00242e-09, -0.95318, -6.57861e-10, 0.302403, 0.945496, 0.6, 0.270404)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(-0.343086, 1.12257e-08, 0.939304, -1.31835e-09, 1, -1.24326e-08, -0.939304, -5.50377e-09, -0.343086, 0.939226, 0.6, -0.257454)
-shape = SubResource("BoxShape3D_1b16v")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Baignoire"]
-transform = Transform3D(0.996195, 0, -0.0871558, 0, 1, 0, 0.0871558, 0, 0.996195, 0.554715, 0.6, -0.528426)
-shape = SubResource("BoxShape3D_1b16v")
+[node name="Baignoire" parent="." instance=ExtResource("5_2xuvl")]
 
 [node name="FLOTTE2" parent="." instance=ExtResource("3_qnajh")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.986655, 0)
@@ -370,6 +322,9 @@ transform = Transform3D(1.53209, 0, 1.28558, 0, 2, 0, -1.28558, 0, 1.53209, 3.8,
 [node name="toothbrush" parent="Environment" instance=ExtResource("21_iadyx")]
 transform = Transform3D(-7.57104e-08, -1.73205, -1, 2, -8.74228e-08, -2.13162e-14, -4.37114e-08, -1, 1.73205, -0.667632, 0.0429983, -1.79495)
 
+[node name="plant with animation2" parent="Environment" instance=ExtResource("22_mn8di")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88773, 1.19209e-07, -1.57828)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -404,9 +359,6 @@ texture = ExtResource("23_j44pb")
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Dash"
-
-[node name="plant with animation2" parent="Environment" instance=ExtResource("22_mn8di")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88773, 1.19209e-07, -1.57828)
 
 [connection signal="timeout" from="HUD/Countdown" to="HUD" method="_on_countdown_timeout"]
 [connection signal="timeout" from="SecheCheveuxRespawnTimer" to="." method="_on_seche_cheveux_respawn_timer_timeout"]

@@ -1,6 +1,6 @@
 extends Control
 
-signal request_game_start(players: Array[Player])
+signal request_game_start(players: Array[Player], match_length: int)
 
 @export var player_join_parent: Control = null
 @onready var exit_progress_bar = $KeysVBox/ExitHBox/Control/ExitProgressBar
@@ -9,10 +9,10 @@ signal request_game_start(players: Array[Player])
 var match_length_scene = preload("res://menu/match_length_panel_container.tscn")
 var match_length_node: Control = null
 
-const LENGTHS = [1, 2, 3, 4, 5, 10, 20, INF]
+const LENGTHS = [1, 2, 3, 4, 5, 10, 20, -1]
 
 var current_length_index = 2
-var n_players_joined = 0
+var players_joined = {}
 
 var exiting = false
 const EXIT_DELAY = 1.5
@@ -34,14 +34,13 @@ func _process(delta: float) -> void:
 			exit_progress_bar.set_value_no_signal(new_value)
 
 
-func _on_player_joined(_player: Player) -> void:
-	print("hoi")
-	n_players_joined += 1
-	if n_players_joined == 2:
+func _on_player_joined(player: Player) -> void:
+	players_joined[player] = null
+	if players_joined.size() == 2 and match_length_node == null:
 		match_length_node = match_length_scene.instantiate()
 		match_settings_vbox.add_child(match_length_node)
 		match_settings_vbox.move_child(match_length_node, 0)
-		match_length_node.match_length = str(LENGTHS[current_length_index])
+		match_length_node.match_length = LENGTHS[current_length_index]
 		match_length_node.show()
 
 func _on_request_game_start_by(player: Player) -> void:
@@ -62,13 +61,7 @@ func _swap_fullscreen_mode():
 
 func shift_match_length(shift: int) -> void:
 	current_length_index = (current_length_index + shift) % LENGTHS.size()
-	var new_length = LENGTHS[current_length_index]
-	var length_str: String
-	if new_length == INF:
-		length_str = "∞"
-	else:
-		length_str = str(new_length)
-	match_length_node.match_length = length_str
+	match_length_node.match_length = LENGTHS[current_length_index]
 
 
 func _unhandled_input(event: InputEvent) -> void:

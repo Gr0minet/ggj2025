@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=26 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://bathtub_level/bathtub_level.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/debug_draw.gd" id="8_wqv0v"]
 [ext_resource type="PackedScene" uid="uid://bvjeme52fg8uo" path="res://item/mascotte.tscn" id="9_gxufp"]
 [ext_resource type="Script" path="res://bathtub_level/player_spawns.gd" id="11_mx223"]
+[ext_resource type="PackedScene" uid="uid://d0ipl857ti0rb" path="res://scenes/debug/spawn_point.tscn" id="15_r07ij"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -193,33 +194,18 @@ surface_material_override/0 = SubResource("ShaderMaterial_6uoci")
 
 [node name="Duck" parent="Items" instance=ExtResource("7_t2yrm")]
 transform = Transform3D(1.59832, 0, -1.20224, 0, 2, 0, 1.20224, 0, 1.59832, 0.505744, 0.943082, -0.0877335)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="Duck2" parent="Items" instance=ExtResource("7_t2yrm")]
 transform = Transform3D(-0.355475, 0, -1.96816, 0, 2, 0, 1.96816, 0, -0.355475, -0.595814, 0.943082, -0.419019)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="Duck3" parent="Items" instance=ExtResource("7_t2yrm")]
 transform = Transform3D(1.53632, 0, -1.28051, 0, 2, 0, 1.28051, 0, 1.53632, -1.01888, 0.943082, 0.47057)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="Duck4" parent="Items" instance=ExtResource("7_t2yrm")]
 transform = Transform3D(1.80878, 0, 0.853422, 0, 2, 0, -0.853422, 0, 1.80878, -0.142474, 0.943082, 0.615951)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="Duck5" parent="Items" instance=ExtResource("7_t2yrm")]
 transform = Transform3D(-0.0464565, 0, 1.99946, 0, 2, 0, -1.99946, 0, -0.0464565, 0.97872, 0.943082, 0.522915)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="ToothBrush" parent="Items" instance=ExtResource("8_vqbr5")]
 transform = Transform3D(-8.74228e-08, -8.74228e-08, -2, -2, 3.82137e-15, 8.74228e-08, -7.62305e-22, 2, -8.74228e-08, 0.2, 1.01571, 0.4)
@@ -229,27 +215,15 @@ script = null
 
 [node name="Mascotte" parent="Items" instance=ExtResource("9_gxufp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0589308, 0.98794, -0.00752424)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="Mascotte2" parent="Items" instance=ExtResource("9_gxufp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.24784, 0.98794, -0.198456)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="Mascotte3" parent="Items" instance=ExtResource("9_gxufp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.18974, 0.98794, -0.276839)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="Mascotte4" parent="Items" instance=ExtResource("9_gxufp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.649635, 0.98794, 0.193966)
-acceleration = 0.8
-deceleration = 0.2
-max_speed = 10.0
 
 [node name="TargetCameraPosition" type="Marker3D" parent="."]
 transform = Transform3D(1, 7.45601e-08, 4.43755e-08, -6.72004e-08, 0.34202, 0.939693, 5.48863e-08, -0.939693, 0.34202, -2.87586e-08, 2.96306, 0.885402)
@@ -295,36 +269,37 @@ draw_flags = 3
 [node name="PlayerSpawns" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138078, 0)
 script = ExtResource("11_mx223")
+show_spawn_points = true
 
-[node name="Spawn1" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23852, 1.14444, -0.606494)
+[node name="Spawn1" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08687, 1.17092, -0.708193)
 
-[node name="Spawn2" type="Node3D" parent="PlayerSpawns"]
+[node name="Spawn2" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134068, 1.14444, -0.606494)
 
-[node name="Spawn3" type="Node3D" parent="PlayerSpawns"]
+[node name="Spawn3" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4492, 1.14444, -0.606494)
 
-[node name="Spawn4" type="Node3D" parent="PlayerSpawns"]
+[node name="Spawn4" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4492, 1.14444, 0.0766094)
 
-[node name="Spawn5" type="Node3D" parent="PlayerSpawns"]
+[node name="Spawn5" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30875, 1.14444, 0.574572)
 
-[node name="Spawn6" type="Node3D" parent="PlayerSpawns"]
+[node name="Spawn6" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.414968, 1.14444, 0.574572)
 
-[node name="Spawn7" type="Node3D" parent="PlayerSpawns"]
+[node name="Spawn7" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434123, 1.14444, 0.574572)
 
-[node name="Spawn8" type="Node3D" parent="PlayerSpawns"]
+[node name="Spawn8" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47474, 1.14444, 0.497963)
 
-[node name="Spawn9" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.466043, 1.14444, -0.108531)
+[node name="Spawn9" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.856446, 1.14444, -0.108531)
 
-[node name="Spawn10" type="Node3D" parent="PlayerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421353, 1.14444, 0.140451)
+[node name="Spawn10" parent="PlayerSpawns" instance=ExtResource("15_r07ij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358468, 1.14444, 0.140451)
 
 [node name="SecheCheveuxSpawns" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18634, 0)

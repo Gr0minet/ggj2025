@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://seche_cheveux/seche_cheveux.gd" id="1_j0jrd"]
 [ext_resource type="PackedScene" uid="uid://djgyncaelw28c" path="res://seche_cheveux/hairdryer.glb" id="1_y6cma"]
-[ext_resource type="Texture2D" uid="uid://31piot2naay7" path="res://addons/kenney_particle_pack/fire_01.png" id="3_iofjl"]
+[ext_resource type="Texture2D" uid="uid://bgnbruegqraqa" path="res://addons/kenney_particle_pack/scorch_03.png" id="3_v60lv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hf1wa"]
 radius = 0.142479
@@ -12,7 +12,7 @@ height = 1.65777
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_iofjl")
+albedo_texture = ExtResource("3_v60lv")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -103,15 +103,14 @@ shape = SubResource("CapsuleShape3D_hf1wa")
 [node name="CPUParticles3D" type="CPUParticles3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273132, 0.496286)
 emitting = false
-amount = 10
-lifetime = 1.7
+amount = 20
 mesh = SubResource("QuadMesh_rnv6t")
 direction = Vector3(0, 0, 1)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 1.0
-initial_velocity_max = 1.0
-color = Color(1, 1, 1, 0.372549)
+initial_velocity_min = 1.2
+initial_velocity_max = 1.5
+color = Color(1, 1, 1, 0.223529)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

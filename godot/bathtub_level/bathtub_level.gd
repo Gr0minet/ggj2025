@@ -91,6 +91,7 @@ func _init_players(players:Array[Player]) -> void:
 		#print("set color %s" % p.color)
 		bubble.set_color_tint(p.color)
 		bubble.player_device_id = p.id
+		bubble.label_3d.text = "Player " + str(p.id + 1)
 
 
 func _on_bubble_died(bubble_id: int) -> void:

@@ -3,8 +3,11 @@
 [ext_resource type="Script" path="res://audio/audio_manager.gd" id="1_1jtql"]
 
 [node name="AudioManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_1jtql")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 
 [node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]
+process_mode = 3

@@ -6,8 +6,11 @@ extends Node3D
 @export var player_spawns:PlayerSpawns = null
 @export var bubble_scene:PackedScene = null
 @export var seche_cheveux_scene: PackedScene = null
-@onready var _flotte: Node3D = $FLOTTE2
 
+var game_started:bool = false
+
+
+@onready var _flotte: Node3D = $FLOTTE2
 @onready var _seche_cheveux_respawn_timer: Timer = $SecheCheveuxRespawnTimer
 @onready var _hud: HUD = $HUD
 
@@ -16,6 +19,7 @@ func _ready() -> void:
 	allow_player_input(false)
 
 func start_level(players:Array[Player]) -> void:
+	game_started = true
 	AudioManager.mute_music2(false)
 	
 	_clear_players()
@@ -29,6 +33,12 @@ func start_level(players:Array[Player]) -> void:
 	
 	_hud.start_timer(3)
 
+func end_level() -> void:
+	_hud.interrupt_timer()
+	game_started = false
+	AudioManager.mute_music2(true)
+	allow_player_input(false)
+	_clear_players()
 
 func allow_player_input(allow:bool) -> void:
 	for bubble in players_parent_node.get_children():
@@ -81,5 +91,10 @@ func _on_seche_cheveux_respawn_timer_timeout() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("exit"):
-		get_tree().quit()
+	if not game_started:
+		return
+	
+	if event.is_action_pressed("pause"):
+		# mark as handled to not unpause immediately :)
+		get_viewport().set_input_as_handled()
+		Events.pause()

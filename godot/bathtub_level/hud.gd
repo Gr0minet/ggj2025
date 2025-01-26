@@ -12,6 +12,11 @@ func start_timer(start_countdown: int) -> void:
 	_countdown.start(start_countdown)
 
 
+func interrupt_timer() -> void:
+	if _countdown_label.visible:
+		_countdown_label.visible = false
+		_countdown.stop()
+	
 func _process(_delta: float) -> void:
 	if not _countdown.is_stopped():
 		_countdown_label.text = "%d" % [int(_countdown.time_left) + 1]

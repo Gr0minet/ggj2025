@@ -6,15 +6,28 @@ extends Node3D
 @onready var target_camera_position: Marker3D = $BathtubLevel/TargetCameraPosition
 @onready var rotate_camera_anchor: Node3D = $RotateCameraAnchor
 
-# Called when the node enters the scene tree for the first time.
+@export var menu_scene:PackedScene = null
+
 func _ready() -> void:
 	randomize()
-	rotate_camera_anchor.set_rotating(true)
-	menu.request_game_start.connect(_on_request_game_start)
 	
+	init_main_menu()
 	AudioManager.play_music(SoundBank.main_menu_music)
 	AudioManager.play_music2(SoundBank.background_perc_music)
 	AudioManager.mute_music2(true)
+	
+	Events.return_to_main_menu.connect(_on_return_to_main_menu)
+
+func init_main_menu() -> void:
+	if menu == null and menu_scene:
+		menu = menu_scene.instantiate()
+		add_child(menu)
+	menu.request_game_start.connect(_on_request_game_start)
+	rotate_camera_anchor.set_rotating(true)
+
+func _on_return_to_main_menu() -> void:
+	init_main_menu()
+	main_level.end_level()
 
 func _on_request_game_start(players:Array[Player]) -> void:
 	main_level.start_level(players)

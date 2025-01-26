@@ -62,6 +62,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_constants/separation = 16
 
 [node name="PlayerJoin0" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]

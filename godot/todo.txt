@@ -7,3 +7,4 @@
 - ajouter transparence au spawn du seche cheveux ?
 - Ajout vfx vent sèche cheveux
 - test de mettre un parallélépipède en shape de vent
+- Ajuster collision shape de la baignoire

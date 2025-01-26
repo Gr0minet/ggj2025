@@ -2,6 +2,7 @@ class_name Item
 extends CharacterBody3D
 
 
+@export var rotation_factor: float = 2.0
 @export var acceleration : float = 0.8
 @export var deceleration : float = 0.2
 @export var max_speed : float = 10.0
@@ -10,6 +11,7 @@ extends CharacterBody3D
 func _physics_process(delta: float) -> void:
 	if velocity:
 		velocity -= velocity * deceleration * delta
+		rotate_y(velocity.length() * rotation_factor * delta)
 	var collision: KinematicCollision3D = move_and_collide(velocity * delta)
 	_handle_collision(collision)
 

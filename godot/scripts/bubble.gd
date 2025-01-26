@@ -138,3 +138,4 @@ func set_color_tint(color:Color, preserve_alpha:bool=true):
 	if preserve_alpha:
 		color.a = old_alpha
 	_mesh_material.albedo_color = color
+	cpu_particles_3d.color = color

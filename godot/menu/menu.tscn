@@ -13,11 +13,11 @@ corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 
-[sub_resource type="Gradient" id="Gradient_e4pkv"]
+[sub_resource type="Gradient" id="Gradient_arokj"]
 colors = PackedColorArray(1, 0, 0, 0.392157, 1, 0.615686, 0.556863, 0.392157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_odukd"]
-gradient = SubResource("Gradient_e4pkv")
+gradient = SubResource("Gradient_arokj")
 fill = 1
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("player_join_parent")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://4el3kq51boe8"]
+[gd_scene load_steps=34 format=3 uid="uid://4el3kq51boe8"]
 
 [ext_resource type="Script" path="res://bathtub_level/bathtub_level.gd" id="1_bujv1"]
 [ext_resource type="Shader" path="res://environment/water/water.gdshader" id="1_gudu6"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://c6q6xv6xvweo6" path="res://environment/furniture.glb" id="19_j2k1o"]
 [ext_resource type="PackedScene" uid="uid://fy2ekuc0cwlr" path="res://environment/plant with animation.glb" id="20_bmqwy"]
 [ext_resource type="PackedScene" uid="uid://otot7s0garmu" path="res://environment/toothbrush.glb" id="21_iadyx"]
+[ext_resource type="Texture2D" uid="uid://kbfsh2t78o44" path="res://assets/xbox_stick_l.png" id="22_6vj23"]
+[ext_resource type="Texture2D" uid="uid://d01clc8kv8mel" path="res://assets/xbox_rb_outline.png" id="23_j44pb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsayj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -370,6 +372,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -1.5)
 
 [node name="toothbrush" parent="Environment" instance=ExtResource("21_iadyx")]
 transform = Transform3D(-7.57104e-08, -1.73205, -1, 2, -8.74228e-08, -2.13162e-14, -4.37114e-08, -1, 1.73205, -0.667632, 0.0429983, -1.79495)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="KeysVBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MoveHBox" type="HBoxContainer" parent="MarginContainer/KeysVBox"]
+layout_mode = 2
+
+[node name="MoveTextureRect" type="TextureRect" parent="MarginContainer/KeysVBox/MoveHBox"]
+layout_mode = 2
+texture = ExtResource("22_6vj23")
+
+[node name="MoveLabel" type="Label" parent="MarginContainer/KeysVBox/MoveHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Move"
+
+[node name="DashHBox" type="HBoxContainer" parent="MarginContainer/KeysVBox"]
+layout_mode = 2
+
+[node name="DashTextureRect" type="TextureRect" parent="MarginContainer/KeysVBox/DashHBox"]
+layout_mode = 2
+texture = ExtResource("23_j44pb")
+
+[node name="DashLabel" type="Label" parent="MarginContainer/KeysVBox/DashHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Dash"
 
 [connection signal="timeout" from="HUD/Countdown" to="HUD" method="_on_countdown_timeout"]
 [connection signal="timeout" from="SecheCheveuxRespawnTimer" to="." method="_on_seche_cheveux_respawn_timer_timeout"]

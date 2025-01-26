@@ -103,4 +103,14 @@ angle_max = 360.0
 scale_amount_min = 0.0
 color_ramp = SubResource("Gradient_oovat")
 
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.178525, -0.184998)
+billboard = 1
+render_priority = 1
+outline_render_priority = 0
+text = "Player"
+font_size = 24
+outline_size = 8
+uppercase = true
+
 [editable path="BULLESATUREE"]

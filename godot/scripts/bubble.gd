@@ -9,9 +9,12 @@ signal bubble_died(player_device_id: int)
 @export var deceleration : float = 0.4
 @export var max_speed : float = 10.0
 @export var DASH_IMPULSE: float = 1.0
+@export var LABEL_DURATION: float = 3.0
 
 @onready var cpu_particles_3d: CPUParticles3D = $CPUParticles3D
 @onready var bullesaturee: Node3D = $BULLESATUREE
+#@onready var label_3d: Label3D = $CanvasLayer/Label3D
+@onready var label_3d: Label3D = $Label3D
 
 # Material and color related variables
 @export var mesh_instance : MeshInstance3D = null
@@ -34,6 +37,7 @@ func _ready() -> void:
 	if mesh_instance:
 		_mesh_material = mesh_instance.get_active_material(0).duplicate()
 		mesh_instance.set_surface_override_material(0, _mesh_material)
+	label_3d.text = "Player " + str(player_device_id + 1)
 
 func _physics_process(delta: float) -> void:
 
@@ -94,6 +98,10 @@ func die() -> void:
 
 func allow_player_input(allow:bool) -> void:
 	allow_input = allow
+	if allow:
+		var timer: SceneTreeTimer = get_tree().create_timer(LABEL_DURATION)
+		timer.timeout.connect(func(): label_3d.visible = false)
+
 
 func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> void:
 	if not collision:
@@ -139,3 +147,4 @@ func set_color_tint(color:Color, preserve_alpha:bool=true):
 		color.a = old_alpha
 	_mesh_material.albedo_color = color
 	cpu_particles_3d.color = color
+	label_3d.modulate = color

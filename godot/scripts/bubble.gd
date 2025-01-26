@@ -6,6 +6,8 @@ extends CharacterBody3D
 @export var acceleration : float = 1.6
 @export var deceleration : float = 0.4
 @export var max_speed : float = 10.0
+@export var DASH_IMPULSE: float = 1.0
+
 @onready var cpu_particles_3d: CPUParticles3D = $CPUParticles3D
 @onready var bullesaturee: Node3D = $BULLESATUREE
 
@@ -18,6 +20,8 @@ const DEAD_ZONE = 0.5
 var allow_input:bool = true
 
 var _input_dir:Vector2 = Vector2.ZERO
+var _dash_remaining: float = 0.0
+var _dash_vector: Vector2 = Vector2.ZERO
 
 var _bounce_sounds:Array[AudioStream] = [
 	SoundBank.bounce1,
@@ -45,7 +49,15 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, deceleration*delta)
 		velocity.z = move_toward(velocity.z, 0, deceleration*delta)
 
-	var collision : KinematicCollision3D = move_and_collide(velocity * delta)
+	var dash: Vector3 = Vector3.ZERO
+	if _dash_remaining > 0:
+		dash.x += _dash_vector.x * _dash_remaining
+		dash.z += _dash_vector.y * _dash_remaining
+		_dash_remaining -= delta
+		if _dash_remaining < 0.0:
+			_dash_remaining = 0.0
+
+	var collision : KinematicCollision3D = move_and_collide((velocity + dash) * delta)
 	_handle_collision(collision, false)
 
 
@@ -64,6 +76,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				_input_dir.x = axis_value if abs(axis_value) >= DEAD_ZONE else 0.0
 			JOY_AXIS_LEFT_Y:
 				_input_dir.y = axis_value if abs(axis_value) >= DEAD_ZONE else 0.0
+	elif event.is_action_pressed("dash"):
+		if is_zero_approx(_dash_remaining):
+			_dash_vector = _input_dir.normalized()
+			_dash_remaining = DASH_IMPULSE
 
 
 func die() -> void:
@@ -84,6 +100,7 @@ func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> vo
 	if velocity.length() < 0.05:
 		return
 	
+	_dash_remaining = 0.0
 	var collider := collision.get_collider()
 	var velocity_to_collider:float = 0.8
 	var velocity_to_self:float = 0.3 # bounce back

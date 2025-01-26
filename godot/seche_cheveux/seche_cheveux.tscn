@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://31piot2naay7" path="res://addons/kenney_particle_pack/fire_01.png" id="3_iofjl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hf1wa"]
-radius = 0.0750245
+radius = 0.142479
 height = 1.65777
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyuhx"]

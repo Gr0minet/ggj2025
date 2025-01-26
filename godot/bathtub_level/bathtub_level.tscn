@@ -209,7 +209,6 @@ transform = Transform3D(-0.0464565, 0, 1.99946, 0, 2, 0, -1.99946, 0, -0.0464565
 
 [node name="ToothBrush" parent="Items" instance=ExtResource("8_vqbr5")]
 transform = Transform3D(-8.74228e-08, -8.74228e-08, -2, -2, 3.82137e-15, 8.74228e-08, -7.62305e-22, 2, -8.74228e-08, 0.2, 1.01571, 0.4)
-collision_layer = 1
 collision_mask = 1
 script = null
 

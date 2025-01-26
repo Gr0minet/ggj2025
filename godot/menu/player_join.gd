@@ -7,7 +7,16 @@ signal player_joined(player: Player)
 
 @export var player_id: int
 
-const COLORS = [Color.CADET_BLUE, Color.CHARTREUSE, Color.CORAL, Color.DEEP_PINK]
+const COLORS = [
+	Color.AQUA,
+	Color.RED,
+	Color.GREEN,
+	Color.YELLOW,
+	Color.ORANGE,
+	Color.PURPLE,
+	Color.NAVY_BLUE,
+	Color.FUCHSIA,
+]
 var current_color_index = 0
 const JOIN_DELAY = 1.5
 

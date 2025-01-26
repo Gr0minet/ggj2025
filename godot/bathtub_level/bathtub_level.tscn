@@ -316,13 +316,13 @@ one_shot = true
 transform = Transform3D(0.571578, 0, 1.91659, 0, 2, 0, -1.91659, 0, 0.571578, 4.40173, 0.0105708, 0.621867)
 
 [node name="carpet2" parent="Environment" instance=ExtResource("18_hs7mu")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.00623322, 0, -1.98223)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.00623322, 0, 1.88457)
 
 [node name="furniture" parent="Environment" instance=ExtResource("19_j2k1o")]
 transform = Transform3D(1.53209, 0, 1.28558, 0, 2, 0, -1.28558, 0, 1.53209, 3.8, 0, 3.2)
 
 [node name="toothbrush" parent="Environment" instance=ExtResource("21_iadyx")]
-transform = Transform3D(-7.57104e-08, -1.73205, -1, 2, -8.74228e-08, -2.13162e-14, -4.37114e-08, -1, 1.73205, -0.667632, 0.0429983, -1.79495)
+transform = Transform3D(-7.57104e-08, -1.73205, -1, 2, -8.74228e-08, -2.13162e-14, -4.37114e-08, -1, 1.73205, -0.667632, 0.0429983, 2.07185)
 
 [node name="plant with animation2" parent="Environment" instance=ExtResource("22_mn8di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88773, 1.19209e-07, -1.57828)

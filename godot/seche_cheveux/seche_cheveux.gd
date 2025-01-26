@@ -32,6 +32,7 @@ func _physics_process(delta: float) -> void:
 func _start_venting() -> void:
 	_timer.start(DURATION)
 	_cpu_particles_3d.emitting = true
+	_area_3d.monitoring = true
 
 
 func _remove() -> void:

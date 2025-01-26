@@ -78,7 +78,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				_input_dir.x = axis_value if abs(axis_value) >= DEAD_ZONE else 0.0
 			JOY_AXIS_LEFT_Y:
 				_input_dir.y = axis_value if abs(axis_value) >= DEAD_ZONE else 0.0
-	elif event.is_action_pressed("dash"):
+	elif allow_input and event.is_action_pressed("dash"):
 		if is_zero_approx(_dash_remaining):
 			_dash_vector = _input_dir.normalized()
 			_dash_remaining = DASH_IMPULSE

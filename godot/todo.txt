@@ -5,4 +5,3 @@
 - Menu fin ?
 - Retirer les ombres des items sur l'eau ?
 - test de mettre un parallélépipède en shape de vent
-- Ajuster collision shape de la baignoire

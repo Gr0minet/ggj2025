@@ -112,7 +112,6 @@ func _on_seche_cheveux_respawn_timer_timeout() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not game_started:
 		return
-	
 	if event.is_action_pressed("pause"):
 		# mark as handled to not unpause immediately :)
 		get_viewport().set_input_as_handled()

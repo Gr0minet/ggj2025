@@ -8,6 +8,8 @@ extends CharacterBody3D
 
 
 func _physics_process(delta: float) -> void:
+	if velocity:
+		velocity -= velocity * deceleration * delta
 	var collision: KinematicCollision3D = move_and_collide(velocity * delta)
 	_handle_collision(collision)
 

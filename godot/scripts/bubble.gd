@@ -3,8 +3,8 @@ extends CharacterBody3D
 
 
 @export_range(0,4) var player_device_id:int = 0
-@export var acceleration : float = 0.8
-@export var deceleration : float = 0.2
+@export var acceleration : float = 1.6
+@export var deceleration : float = 0.4
 @export var max_speed : float = 10.0
 @onready var cpu_particles_3d: CPUParticles3D = $CPUParticles3D
 @onready var bullesaturee: Node3D = $BULLESATUREE

@@ -22,8 +22,11 @@ func set_wind_position_to_water_level(water_level: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	var wind_factor: float = 1.0
 	for body: Node3D in _body_inside_wind:
-		body.velocity += Vector3.BACK.rotated(Vector3.UP, rotation.y) * delta
+		if body is Bubble:
+			wind_factor = 2.0
+		body.velocity += Vector3.BACK.rotated(Vector3.UP, rotation.y) * wind_factor * delta
 
 
 func _start_venting() -> void:

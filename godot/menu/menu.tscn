@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_xshr6")
-player_join_parent = NodePath("MarginContainer/HBoxContainer")
+player_join_parent = NodePath("MarginContainer/MatchSettingsVBox/PlayerJoinHBox")
 
 [node name="Title" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(0, 150)
@@ -40,7 +40,7 @@ offset_top = 40.0
 offset_bottom = 190.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0, 0.658824, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0.270588, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("2_y4f5j")
 theme_override_font_sizes/normal_font_size = 84
 bbcode_enabled = true
@@ -48,34 +48,40 @@ text = "[center][outline_size=10][wave amp=50.0 freq=5.0 connected=1]Bubble or b
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 541.0
+offset_top = -336.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="MatchSettingsVBox" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 16
 
-[node name="PlayerJoin0" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
+[node name="PlayerJoinHBox" type="HBoxContainer" parent="MarginContainer/MatchSettingsVBox"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+
+[node name="PlayerJoin0" parent="MarginContainer/MatchSettingsVBox/PlayerJoinHBox" instance=ExtResource("2_67jmx")]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="PlayerJoin1" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
+[node name="PlayerJoin1" parent="MarginContainer/MatchSettingsVBox/PlayerJoinHBox" instance=ExtResource("2_67jmx")]
 layout_mode = 2
 player_id = 1
 
-[node name="PlayerJoin2" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
+[node name="PlayerJoin2" parent="MarginContainer/MatchSettingsVBox/PlayerJoinHBox" instance=ExtResource("2_67jmx")]
 layout_mode = 2
 player_id = 2
 
-[node name="PlayerJoin3" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_67jmx")]
+[node name="PlayerJoin3" parent="MarginContainer/MatchSettingsVBox/PlayerJoinHBox" instance=ExtResource("2_67jmx")]
 layout_mode = 2
 player_id = 3
 

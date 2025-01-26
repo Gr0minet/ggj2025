@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://xv1weeumuqk"]
+
+[ext_resource type="Texture2D" uid="uid://cvksvk2g56tnj" path="res://assets/xbox_dpad_horizontal_outline.png" id="1_ga211"]
+[ext_resource type="Script" path="res://menu/match_length_panel_container.gd" id="1_sqpeh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvwoo"]
+bg_color = Color(0.6, 0.6, 0.6, 0.533333)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="MatchLengthPanelContainer" type="PanelContainer"]
+visible = false
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_pvwoo")
+script = ExtResource("1_sqpeh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="MatchLengthHBox" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FirstToLabel" type="Label" parent="MarginContainer/MatchLengthHBox"]
+layout_mode = 2
+text = "First to "
+
+[node name="MatchLengthLabel" type="Label" parent="MarginContainer/MatchLengthHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.815686, 0, 1)
+text = "42"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MatchLengthHBox"]
+layout_mode = 2
+texture = ExtResource("1_ga211")
+
+[node name="WinLabel" type="Label" parent="MarginContainer/MatchLengthHBox"]
+layout_mode = 2
+text = "wins it all!"

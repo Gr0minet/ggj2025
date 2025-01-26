@@ -2,6 +2,7 @@ class_name PlayerJoin
 extends PanelContainer
 
 signal request_game_start_by(player: Player)
+signal player_joined(player: Player)
 
 
 @export var player_id: int
@@ -52,14 +53,16 @@ to join[/center]"
 
 
 func enter_joined_state() -> void:
+	if current_state == State.JOINED:
+		return
 	set_color(current_color_index)
 	current_state = State.JOINED
 	color_picker.show()
-	rich_text_label.text = "[center]Keep
+	rich_text_label.text = "[center]Long
 [img]res://assets/xbox_button_color_a_outline.png[/img]
-pressed
 to start[/center]"
 	progress_bar_reset()
+	player_joined.emit(player)
 
 
 func enter_launching_state() -> void:

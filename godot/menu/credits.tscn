@@ -37,8 +37,13 @@ theme_override_font_sizes/bold_font_size = 64
 bbcode_enabled = true
 text = "[center]Credits[/center]"
 
-[node name="CreditsText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CreditsText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/normal_font_size = 24
@@ -51,15 +56,33 @@ text = "[b]3D Art[/b]
     Thibaud Creusé
 
 [b]Code[/b]
-    [url=https://github.com/Gr0minet]Grominet[/url], [url=https://github.com/tehelka-gamedev]Tehelka[/url], [url=https://github.com/m09]m09[/url], [url=https://github.com/Azkellas]Azkellas[/url]
+    [url=https://github.com/Gr0minet]Grominet[/url], [url=https://github.com/tehelka-gamedev]Tehelka[/url], [url=https://github.com/m09]m09[/url]
 
-[b]External Assets[/b]
-    Input Prompts by Kenny (CC0) [url]https://kenney.nl/assets/input-prompts[/url]
-    Particle sprite by Kenny (CC0) [url]https://www.kenney.nl/assets/particle-pack[/url]
-    Tiles 029 by CC0 Textures (CC0) [url]https://cc0-textures.com/t/cc0t-tiles-029[/url]
-    Bubblez Graffiti by GGBotNet (OFL-1.1) [url]https://www.ggbot.net/[/url]
-    Crayon Libre by GGBotNet (CC0) [url]https://www.ggbot.net/[/url]
-    Water shader by GDQuest (MIT) [url]https://github.com/gdquest-demos/godot-4-3d-third-person-controller[/url]
+Special thanks to [url=https://github.com/Azkellas]Azkellas[/url] for help with shaders. :)"
+script = ExtResource("1_qo0p8")
+
+[node name="CreditsText2" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.16
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[b]External Assets[/b]
+    Input Prompts by Kenny (CC0) 
+    [url]https://kenney.nl/assets/input-prompts[/url]
+    Particle sprite by Kenny (CC0) 
+    [url]https://www.kenney.nl/assets/particle-pack[/url]
+    Tiles 029 by CC0 Textures (CC0) 
+    [url]https://cc0-textures.com/t/cc0t-tiles-029[/url]
+    Bubblez Graffiti by GGBotNet (OFL-1.1)
+    [url]https://www.ggbot.net/[/url]
+    Crayon Libre by GGBotNet (CC0) 
+    [url]https://www.ggbot.net/[/url]
+    Water shader by GDQuest (MIT) 
+    [url]https://github.com/gdquest-demos/godot-4-3d-third-person-controller[/url]
 
 [b]License[/b]
     CC BY-SA 4.0 for assets

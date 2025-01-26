@@ -34,9 +34,11 @@ func start_level(players:Array[Player]) -> void:
 	
 	_hud.timer_over.connect(func():
 		allow_player_input(true)
-		)
+		_set_seche_cheveux_respawn_timer()
+	)
 	
 	_hud.start_timer(3)
+	
 
 func end_level() -> void:
 	_hud.interrupt_timer()
@@ -70,7 +72,6 @@ func _init_players(players:Array[Player]) -> void:
 		print("set color %s" % p.color)
 		bubble.set_color_tint(p.color)
 		bubble.player_device_id = p.id
-	_set_seche_cheveux_respawn_timer()
 
 
 func _on_bubble_died(bubble_id: int) -> void:

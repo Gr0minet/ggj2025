@@ -16,9 +16,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="duck" parent="Pivot" index="0" instance=ExtResource("2_tc8a2")]
 
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "move"
-
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="2"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.00532743, 0.0280568, 0)
 shape = SubResource("CapsuleShape3D_pd10l")

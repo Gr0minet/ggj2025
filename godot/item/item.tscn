@@ -52,3 +52,4 @@ script = ExtResource("1_uhc2d")
 libraries = {
 "": SubResource("AnimationLibrary_o4pf7")
 }
+autoplay = "move"

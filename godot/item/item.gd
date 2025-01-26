@@ -18,8 +18,6 @@ func _handle_collision(collision : KinematicCollision3D, debug:bool=false) -> vo
 	if not collision:
 		return
 	
-	#print(collision)
-	
 	if velocity.length() < 0.05:
 		return
 	

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0avrrpd4jumj"]
+
+[ext_resource type="PackedScene" uid="uid://bl6rqfabx3oyd" path="res://item/item.tscn" id="1_qrqfj"]
+[ext_resource type="PackedScene" uid="uid://w8xkwy430ynk" path="res://item/sponge/sponge.glb" id="2_tdw18"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fpfgm"]
+size = Vector3(0.0661621, 0.0272217, 0.107178)
+
+[node name="Sponge" instance=ExtResource("1_qrqfj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="sponge" parent="Pivot" index="0" instance=ExtResource("2_tdw18")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000915527, 0)
+shape = SubResource("BoxShape3D_fpfgm")

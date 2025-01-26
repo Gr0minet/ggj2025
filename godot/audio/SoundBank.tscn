@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://vvwry3wxpmfl"]
+[gd_scene load_steps=11 format=3 uid="uid://vvwry3wxpmfl"]
 
 [ext_resource type="Script" path="res://audio/sound_bank.gd" id="1_2pu7o"]
 [ext_resource type="AudioStream" uid="uid://c4t0qpb2xq7um" path="res://audio/bgm/LOOP_INSTRUMENTS.mp3" id="2_46s0p"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bdq2et5ca3q" path="res://audio/se/PLOPP.mp3" id="6_7okdq"]
 [ext_resource type="AudioStream" uid="uid://bnwu03os1oxiu" path="res://audio/se/PLOPPP.mp3" id="7_g0hrw"]
 [ext_resource type="AudioStream" uid="uid://b5h5yxw8v3b4m" path="res://audio/se/PLOPLOPLOP.mp3" id="8_blshh"]
+[ext_resource type="AudioStream" uid="uid://ce46glk6or23d" path="res://audio/se/LESECHECHEVEU.mp3" id="10_qthod"]
 
 [node name="SoundBank" type="Node"]
 script = ExtResource("1_2pu7o")
@@ -20,3 +21,4 @@ plop = ExtResource("5_dcf45")
 plop2 = ExtResource("6_7okdq")
 plop3 = ExtResource("7_g0hrw")
 multi_plop = ExtResource("8_blshh")
+hair_dryer = ExtResource("10_qthod")

@@ -33,9 +33,11 @@ func _start_venting() -> void:
 	_timer.start(DURATION)
 	_cpu_particles_3d.emitting = true
 	_area_3d.monitoring = true
+	$AudioStreamPlayer.play()
 
 
 func _remove() -> void:
+	$AudioStreamPlayer.stop()
 	_cpu_particles_3d.emitting = false
 	_animation_player.play("fade_out")
 	await _animation_player.animation_finished

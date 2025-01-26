@@ -8,3 +8,4 @@ extends Node
 @export var plop2:AudioStream = null
 @export var plop3:AudioStream = null
 @export var multi_plop:AudioStream = null
+@export var hair_dryer:AudioStream = null

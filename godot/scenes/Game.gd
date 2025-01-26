@@ -74,8 +74,3 @@ func _on_bathtub_level_bubble_won(bubble_id: int) -> void:
 		scores_node.show()
 	# print("You won" + str(bubble_id))
 	# start_round(players)
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("exit"):
-		get_tree().quit()

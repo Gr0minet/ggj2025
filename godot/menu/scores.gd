@@ -20,7 +20,8 @@ func sort_player(a: Player, b: Player) -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func init() -> void:
-	exit_hbox.hide()
+	if game_length > 0:
+		exit_hbox.hide()
 	scores = {}
 	players.sort_custom(sort_player)
 	for player in players:
@@ -73,7 +74,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("join_game") and not over:
 		request_next_round.emit()
-	if event.is_action_pressed("exit") and over:
+	if event.is_action_pressed("exit") and (over or game_length <= 0):
 		get_viewport().set_input_as_handled()
 		Events.return_to_main_menu.emit()
 		queue_free()
